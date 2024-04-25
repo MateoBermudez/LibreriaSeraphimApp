@@ -12,5 +12,6 @@ public class Main {
     public static void main(String[] args) {
         InicioUsuarioForm InicioUsuario = new InicioUsuarioForm();
         InicioUsuario.InitLogin();
+        System.out.println("Hola");
     }
 }
