@@ -16,6 +16,11 @@ public class mdUsuario {
         this.telefono = telefono;
         this.contrasena = contrasena;
     }
+    
+    public mdUsuario(String id, String contrasena) {
+        this.id = id;
+        this.contrasena = contrasena;
+    }
 
     public mdUsuario(String id, String contrasena){
         this.id = id;
