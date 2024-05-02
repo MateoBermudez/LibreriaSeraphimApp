@@ -180,6 +180,7 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             nameField.setEnabled(false);
+            ValidarRegistro();
         }
     }//GEN-LAST:event_nameFieldKeyPressed
 
@@ -187,6 +188,7 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             idField.setEnabled(false);
+            ValidarRegistro();
         }
     }//GEN-LAST:event_idFieldKeyPressed
 
@@ -194,6 +196,7 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             correoField.setEnabled(false);
+            ValidarRegistro();
         }
     }//GEN-LAST:event_correoFieldKeyPressed
 
@@ -201,6 +204,7 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             passwordField.setEnabled(false);
+            ValidarRegistro();
         }
     }//GEN-LAST:event_passwordFieldKeyPressed
 
@@ -213,6 +217,7 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             apellidosField.setEnabled(false);
+            ValidarRegistro();
         }
     }//GEN-LAST:event_apellidosFieldKeyPressed
 
@@ -220,6 +225,7 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             telefonoField.setEnabled(false);
+            ValidarRegistro();
         }
     }//GEN-LAST:event_telefonoFieldKeyPressed
 
