@@ -9,7 +9,6 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import Modelo.mdUsuario;
-import Controlador.CtrlRegistro;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,6 +21,7 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
      * Creates new form RegistroUsuarioForm
      */
     RegistroUsuarioForm registroUsuario;
+    private CtrlRegistro Controlador = new CtrlRegistro();
     
     
     public RegistroUsuarioForm() {
@@ -324,8 +324,12 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
             String correo = correoField.getText();
             String telefono = telefonoField.getText();
             mdUsuario usuario = new mdUsuario(nombres, apellidos, id, correo, telefono, capturarContrasena());
-            //CtrlRegistro.agregarPersona(usuario);
-            JOptionPane.showMessageDialog(null, "Usuario registrado correctamente");
+            Controlador.validarCreacionUsuario(usuario);
+            if (Controlador.validarCreacionUsuario(usuario)) {
+                JOptionPane.showMessageDialog(null, "Usuario registrado correctamente");
+            } else {
+                JOptionPane.showMessageDialog(null, "El usuario ya existe");
+            }
         } else {
             JOptionPane.showMessageDialog(null, "El usuario ya existe");
         }
