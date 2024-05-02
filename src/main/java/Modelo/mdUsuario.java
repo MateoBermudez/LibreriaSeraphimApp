@@ -22,11 +22,6 @@ public class mdUsuario {
         this.contrasena = contrasena;
     }
 
-    public mdUsuario(String id, String contrasena){
-        this.id = id;
-        this.contrasena = contrasena;
-    }
-
     // se crean los getter y setters
 
     public String getContrasena() {

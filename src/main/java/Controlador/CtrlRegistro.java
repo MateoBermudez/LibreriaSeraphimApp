@@ -22,6 +22,9 @@ public class CtrlRegistro {
         if (vID && vContrasena && vNombre && vApellidos && vCorreo && vTelefono) {
             JOptionPane.showMessageDialog(null, "Validado correctamente - Verificar que el usuario si exista para iniciar sesion:"); 
             registroCorrecto = validarCreacionUsuario(User);
+            if (registroCorrecto) {
+                JOptionPane.showMessageDialog(null, "Usuario creado correctamente.");
+            }
         }
         return vID && vContrasena && vNombre && vApellidos && vCorreo && vTelefono && registroCorrecto;
     }
@@ -46,7 +49,7 @@ public class CtrlRegistro {
     }
 
     private boolean validarCreacionUsuario(mdUsuario User) {
-        //User contiene todos los datos iniciales del usuario. 
+        //User contiene todos los datos iniciales del usuario.
         //Ver si el usuario no exite -> Crea al usuario y entra con su cuenta, si existe -> JOption mensaje, el usuario ya existe.
         /*
         if (El usuario NO existe) {
@@ -56,7 +59,17 @@ public class CtrlRegistro {
         JOptionPane.showMessageDialog(null, "El usuario ya existe, no se puede crear su usuario. ");
         return false;
         */
+        if (CapturarDatos(User.getNombre(), User.getApellido(), User.getId(), User.getCorreo(), User.getTelefono(), User.getContrasena())) {
+            UsuarioCRUD usuarioCRUD = new UsuarioCRUD();
+            usuarioCRUD.agregarUsuario(User);
+            return true;
+        }
         return false;
+    }
+
+    public static mdUsuario consultarUsuario(String id) {
+        UsuarioCRUD usuarioCRUD = new UsuarioCRUD();
+        return usuarioCRUD.validarExistenciaUsuario(id);
     }
 
     private boolean validarNombre(String nombre) {
@@ -90,4 +103,6 @@ public class CtrlRegistro {
         }
         return vAux;
     }
+
+
 }

@@ -8,6 +8,9 @@ import Controlador.CtrlRegistro;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
+import Modelo.mdUsuario;
+import Controlador.CtrlRegistro;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -310,6 +313,22 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
         correoField.setEnabled(true);
         telefonoField.setEnabled(true);
         apellidosField.setEnabled(true);
+    }
+
+    private void registrarUsuario(){
+        String id = idField.getText();
+        mdUsuario usuarioExistente = CtrlRegistro.consultarUsuario(id);
+        if (usuarioExistente == null) {
+            String nombres = nameField.getText();
+            String apellidos = apellidosField.getText();
+            String correo = correoField.getText();
+            String telefono = telefonoField.getText();
+            mdUsuario usuario = new mdUsuario(nombres, apellidos, id, correo, telefono, capturarContrasena());
+            //CtrlRegistro.agregarPersona(usuario);
+            JOptionPane.showMessageDialog(null, "Usuario registrado correctamente");
+        } else {
+            JOptionPane.showMessageDialog(null, "El usuario ya existe");
+        }
     }
 
 }

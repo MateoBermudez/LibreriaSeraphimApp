@@ -25,7 +25,7 @@ public class UsuarioCRUD {
         return usuarios != null ? usuarios : new ArrayList<>();
     }
 
-    public void agregarPersona(mdUsuario usuario) {
+    public void agregarUsuario(mdUsuario usuario) {
         usuarios.add(usuario);
         guardarUsuariosEnJSON();
     }
@@ -39,5 +39,22 @@ public class UsuarioCRUD {
         }
     }
 
+    public mdUsuario validarExistenciaUsuario(String id, String contrasena) {
+        for (mdUsuario usuario : usuarios) {
+            if (usuario.getId().equals(id) && usuario.getContrasena().equals(contrasena)) {
+                return usuario;
+            }
+        }
+        return null;
+    }
+
+    public mdUsuario validarExistenciaUsuario(String id) {
+        for (mdUsuario usuario : usuarios) {
+            if (usuario.getId().equals(id)) {
+                return usuario;
+            }
+        }
+        return null;
+    }
 
 }
