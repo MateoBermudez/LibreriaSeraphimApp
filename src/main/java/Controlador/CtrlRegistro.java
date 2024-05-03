@@ -19,9 +19,6 @@ public class CtrlRegistro {
         vTelefono = validarTelefono(telefono);
         vID = validarId(id);
         vContrasena = validarContrasena(Contrasena);
-        if (vID && vContrasena && vNombre && vApellidos && vCorreo && vTelefono) {
-            JOptionPane.showMessageDialog(null, "Validado correctamente - Verificar que el usuario si exista para iniciar sesion:");
-        }
         return vID && vContrasena && vNombre && vApellidos && vCorreo && vTelefono;
     }
     
@@ -42,25 +39,6 @@ public class CtrlRegistro {
                                                 La contraseña debe tener minimo 8 caracteres. """);
         }
         return vAux;
-    }
-
-    public boolean validarCreacionUsuario(mdUsuario User) {
-        //User contiene todos los datos iniciales del usuario.
-        //Ver si el usuario no exite -> Crea al usuario y entra con su cuenta, si existe -> JOption mensaje, el usuario ya existe.
-        /*
-        if (El usuario NO existe) {
-            //Devuelve true y abre la ventana dentro de la tienda en vista, se guarda al nuevo usuario y pasa a la siguiente ventana con el mismo
-            return true;
-        }
-        JOptionPane.showMessageDialog(null, "El usuario ya existe, no se puede crear su usuario. ");
-        return false;
-        */
-        if (CapturarDatos(User.getNombre(), User.getApellido(), User.getId(), User.getCorreo(), User.getTelefono(), User.getContrasena())) {
-            UsuarioCRUD usuarioCRUD = new UsuarioCRUD();
-            usuarioCRUD.agregarUsuario(User);
-            return true;
-        }
-      return false;
     }
 
     public static mdUsuario consultarUsuario(String id) {

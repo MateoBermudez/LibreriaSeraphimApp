@@ -227,29 +227,31 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
 
     
     private void ValidarRegistro() {
-        boolean sesionIniciada;
+        boolean validarDatos, registroExitoso;
         CtrlRegistro controladorRegistroUsuario = new CtrlRegistro();
         String Contrasena = capturarContrasena();
-        sesionIniciada = controladorRegistroUsuario.CapturarDatos(nameField.getText(), apellidosField.getText(), idField.getText(), 
+        validarDatos = controladorRegistroUsuario.CapturarDatos(nameField.getText(), apellidosField.getText(), idField.getText(),
                 correoField.getText(), telefonoField.getText(), Contrasena);
-        if (sesionIniciada) {
-            dispose();
-            //Llamar a la ventana que sigue del inicio de sesion con este formato
-            /*
-            RegistroUsuarioForm registroUsuario = new RegistroUsuarioForm();
-            registroUsuario.InitRegister();
-            */
+        if (validarDatos) {
+            registroExitoso = registrarUsuario();
+            if (registroExitoso) {
+                dispose();
+                //Llamar a la ventana que sigue del inicio de sesion con este formato
+                /*
+                RegistroUsuarioForm registroUsuario = new RegistroUsuarioForm();
+                registroUsuario.InitRegister();
+                */
+            }
         }
-        //No se valida si los datos son incorrectos o si el usuario no existe, ya que se le avisa al usuario desde controlador
         HabilitarCampos();
     }
     
     private String capturarContrasena() {
-        String Contrasena = "";
+        StringBuilder Contrasena = new StringBuilder();
         for (int i = 0; i < passwordField.getPassword().length; i++) {
-            Contrasena += passwordField.getPassword()[i];
+            Contrasena.append(passwordField.getPassword()[i]);
         }
-        return Contrasena;
+        return Contrasena.toString();
     }
     
     

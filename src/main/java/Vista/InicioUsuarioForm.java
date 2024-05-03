@@ -5,10 +5,13 @@
 package Vista;
 
 import Controlador.CtrlInicio;
+import Controlador.CtrlRegistro;
+import Modelo.UsuarioCRUD;
+import Modelo.mdUsuario;
+
 import java.awt.Color;
 import java.awt.event.KeyEvent;
-import java.util.Arrays;
-import javax.swing.JFrame;
+import javax.swing.*;
 
 /**
  *
@@ -152,28 +155,30 @@ public class InicioUsuarioForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresarMouseClicked
 
     private void ValidarRegistro() {
-        boolean sesionIniciada;
+        boolean validarDatos, sesionIniciada;
         CtrlInicio controladorInicioUsuario = new CtrlInicio();
         String Contrasena = capturarContrasena();
-        sesionIniciada = controladorInicioUsuario.CapturarDatos(idField.getText(), Contrasena);
-        if (sesionIniciada) {
-            dispose();
-            //Llamar a la ventana que sigue del inicio de sesion con este formato
-            /*
-            RegistroUsuarioForm registroUsuario = new RegistroUsuarioForm();
-            registroUsuario.InitRegister();
-            */
+        validarDatos = controladorInicioUsuario.CapturarDatos(idField.getText(), Contrasena);
+        if (validarDatos) {
+            sesionIniciada = inicioUsuario();
+            if (sesionIniciada) {
+                dispose();
+                //Llamar a la ventana que sigue del inicio de sesion con este formato
+                /*
+                RegistroUsuarioForm registroUsuario = new RegistroUsuarioForm();
+                registroUsuario.InitRegister();
+                */
+            }
         }
-        //No se valida si los datos son incorrectos o si el usuario no existe, ya que se le avisa al usuario desde controlador
         HabilitarCampos();
     }
     
     private String capturarContrasena() {
-        String Contrasena = "";
+        StringBuilder Contrasena = new StringBuilder();
         for (int i = 0; i < passwordField.getPassword().length; i++) {
-            Contrasena += passwordField.getPassword()[i];
+            Contrasena.append(passwordField.getPassword()[i]);
         }
-        return Contrasena;
+        return Contrasena.toString();
     }
     
     
@@ -228,5 +233,15 @@ public class InicioUsuarioForm extends javax.swing.JFrame {
     private void HabilitarCampos() {
         passwordField.setEnabled(true);
         idField.setEnabled(true);
+    }
+
+    private boolean inicioUsuario(){
+        String id = idField.getText();
+        mdUsuario usuarioExistente = CtrlInicio.consultarUsuario(id, capturarContrasena());
+        if (usuarioExistente != null) {
+            return true;
+        }
+        JOptionPane.showMessageDialog(null, "El usuario no existe");
+        return false;
     }
 }
