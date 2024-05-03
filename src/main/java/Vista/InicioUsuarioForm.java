@@ -4,9 +4,14 @@
  */
 package Vista;
 
+import Controlador.CtrlInicio;
+import Controlador.CtrlRegistro;
+import Modelo.UsuarioCRUD;
+import Modelo.mdUsuario;
+
 import java.awt.Color;
 import java.awt.event.KeyEvent;
-import javax.swing.JFrame;
+import javax.swing.*;
 
 /**
  *
@@ -18,8 +23,6 @@ public class InicioUsuarioForm extends javax.swing.JFrame {
      * Creates new form InicioUsuarioForm
      */
     InicioUsuarioForm inicioUsuario;
-    boolean isReadyID = false;
-    boolean isReadyPassword = false;
     
     public InicioUsuarioForm() {
         initComponents();
@@ -136,34 +139,48 @@ public class InicioUsuarioForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             idField.setEnabled(false);
-            isReadyID = true;
-            //Validar si el campo esta ingresado correctamente
+            ValidarRegistro();
         }
-        ValidarRegistro();
     }//GEN-LAST:event_idFieldKeyPressed
 
     private void passwordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordFieldKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             passwordField.setEnabled(false);
-            isReadyPassword = true;
-            //Validar si el campo esta ingresado correctamente
+            ValidarRegistro();
         }
-        ValidarRegistro();
     }//GEN-LAST:event_passwordFieldKeyPressed
 
     private void btnIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarMouseClicked
         // TODO add your handling code here:
-        //VALIDAR EL REGISTRO -> si es exitoso, pasar las variables booleanas isReady... a false
+        ValidarRegistro();
     }//GEN-LAST:event_btnIngresarMouseClicked
 
     private void ValidarRegistro() {
-        if (isReadyPassword && isReadyID) {
-            //VALIDAR EL REGISTRO -> si es exitoso, pasar las variables booleanas del if a false
+        boolean validarDatos, sesionIniciada;
+        CtrlInicio controladorInicioUsuario = new CtrlInicio();
+        String Contrasena = capturarContrasena();
+        validarDatos = controladorInicioUsuario.CapturarDatos(idField.getText(), Contrasena);
+        if (validarDatos) {
+            sesionIniciada = inicioUsuario();
+            if (sesionIniciada) {
+                dispose();
+                //Llamar a la ventana que sigue del inicio de sesion con este formato
+                /*
+                RegistroUsuarioForm registroUsuario = new RegistroUsuarioForm();
+                registroUsuario.InitRegister();
+                */
+            }
         }
-        else {
-            //Si no es posible decir el por que
+        HabilitarCampos();
+    }
+    
+    private String capturarContrasena() {
+        StringBuilder Contrasena = new StringBuilder();
+        for (int i = 0; i < passwordField.getPassword().length; i++) {
+            Contrasena.append(passwordField.getPassword()[i]);
         }
+        return Contrasena.toString();
     }
     
     
@@ -214,4 +231,19 @@ public class InicioUsuarioForm extends javax.swing.JFrame {
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel registrarse;
     // End of variables declaration//GEN-END:variables
+
+    private void HabilitarCampos() {
+        passwordField.setEnabled(true);
+        idField.setEnabled(true);
+    }
+
+    private boolean inicioUsuario(){
+        String id = idField.getText();
+        mdUsuario usuarioExistente = CtrlInicio.consultarUsuario(id, capturarContrasena());
+        if (usuarioExistente != null) {
+            return true;
+        }
+        JOptionPane.showMessageDialog(null, "El usuario no existe");
+        return false;
+    }
 }
