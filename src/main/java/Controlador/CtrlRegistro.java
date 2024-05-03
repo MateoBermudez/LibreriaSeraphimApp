@@ -12,21 +12,14 @@ import javax.swing.JOptionPane;
 public class CtrlRegistro {
     public boolean CapturarDatos(String nombre, String apellidos, String id, String correo, String telefono, String Contrasena) {
         mdUsuario User = new mdUsuario(nombre, apellidos, id, correo, telefono, Contrasena);
-        boolean vNombre, vApellidos, vID, vCorreo, vTelefono, vContrasena, registroCorrecto = false;
+        boolean vNombre, vApellidos, vID, vCorreo, vTelefono, vContrasena;
         vNombre = validarNombre(nombre);
         vApellidos = validarApellidos(apellidos);
         vCorreo = validarCorreo(correo);
         vTelefono = validarTelefono(telefono);
         vID = validarId(id);
         vContrasena = validarContrasena(Contrasena);
-        if (vID && vContrasena && vNombre && vApellidos && vCorreo && vTelefono) {
-            JOptionPane.showMessageDialog(null, "Validado correctamente - Verificar que el usuario si exista para iniciar sesion:"); 
-            registroCorrecto = validarCreacionUsuario(User);
-            if (registroCorrecto) {
-                JOptionPane.showMessageDialog(null, "Usuario creado correctamente.");
-            }
-        }
-        return vID && vContrasena && vNombre && vApellidos && vCorreo && vTelefono && registroCorrecto;
+        return vID && vContrasena && vNombre && vApellidos && vCorreo && vTelefono;
     }
     
     private static boolean validarId(String id) {
@@ -46,25 +39,6 @@ public class CtrlRegistro {
                                                 La contraseña debe tener minimo 8 caracteres. """);
         }
         return vAux;
-    }
-
-    private boolean validarCreacionUsuario(mdUsuario User) {
-        //User contiene todos los datos iniciales del usuario.
-        //Ver si el usuario no exite -> Crea al usuario y entra con su cuenta, si existe -> JOption mensaje, el usuario ya existe.
-        /*
-        if (El usuario NO existe) {
-            //Devuelve true y abre la ventana dentro de la tienda en vista, se guarda al nuevo usuario y pasa a la siguiente ventana con el mismo
-            return true;
-        }
-        JOptionPane.showMessageDialog(null, "El usuario ya existe, no se puede crear su usuario. ");
-        return false;
-        */
-        if (CapturarDatos(User.getNombre(), User.getApellido(), User.getId(), User.getCorreo(), User.getTelefono(), User.getContrasena())) {
-            UsuarioCRUD usuarioCRUD = new UsuarioCRUD();
-            usuarioCRUD.agregarUsuario(User);
-            return true;
-        }
-        return false;
     }
 
     public static mdUsuario consultarUsuario(String id) {

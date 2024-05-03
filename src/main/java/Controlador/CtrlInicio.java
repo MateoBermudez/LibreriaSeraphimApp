@@ -11,14 +11,10 @@ import javax.swing.JOptionPane;
 public class CtrlInicio {
     public boolean CapturarDatos(String id, String contrasena) {
         mdUsuario User = new mdUsuario(id, contrasena);
-        boolean vID, vContrasena, inicioCorrecto = false;
+        boolean vID, vContrasena;
         vID = validarId(id);
         vContrasena = validarContrasena(contrasena);
-        if (vID && vContrasena) {
-            JOptionPane.showMessageDialog(null, "Validado correctamente - Verificar que el usuario si exista para iniciar sesion:"); 
-            inicioCorrecto = validarExistenciaUsuario(User);
-        }
-        return vID && vContrasena && inicioCorrecto;
+        return vID && vContrasena;
     }
     
     private static boolean validarId(String id) {
@@ -38,17 +34,9 @@ public class CtrlInicio {
         return vAux;
     }
 
-    private boolean validarExistenciaUsuario(mdUsuario User) {
-        //User contiene el ID y la contraseña del usuario. 
-        //Ver si el usuario exite -> Inicia sesion, si no existe -> JOption mensaje, el usuario no existe.
-        /*
-        if (Usuario SI existe) {
-            //Devuelve true y abre la ventana dentro de la tienda en vista
-            return true;
-        }
-        JOptionPane.showMessageDialog(null, "El usuario no existe. ");
-        return false;
-        */
-        return false;
+    public static mdUsuario consultarUsuario(String id, String contrasena) {
+        UsuarioCRUD usuarioCRUD = new UsuarioCRUD();
+        return usuarioCRUD.validarExistenciaUsuario(id, contrasena);
     }
+
 }
