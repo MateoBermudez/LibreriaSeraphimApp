@@ -21,6 +21,7 @@ public class libreriaForm extends javax.swing.JFrame {
     private double total= 0.0;
     private int x= 0;
 
+    libreriaForm libreria;
     /**
      * Creates new form libreriaForm
      */
@@ -32,6 +33,18 @@ public class libreriaForm extends javax.swing.JFrame {
     public void init(){
         setImage();
         setTime();
+    }
+
+    public void InitLibreria() {
+        libreria = new libreriaForm();
+        libreria.setSize(libreria.getPreferredSize());
+        libreria.setMaximumSize(libreria.getSize());
+        libreria.setMinimumSize(libreria.getSize());
+        libreria.setPreferredSize(libreria.getSize());
+        libreria.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        libreria.setLocationRelativeTo(null);
+        libreria.getContentPane().setBackground(Color.WHITE);
+        libreria.setVisible(true);
     }
     
     public void setImage(){

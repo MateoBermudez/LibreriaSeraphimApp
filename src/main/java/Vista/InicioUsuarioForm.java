@@ -165,11 +165,8 @@ public class InicioUsuarioForm extends javax.swing.JFrame {
             sesionIniciada = inicioUsuario();
             if (sesionIniciada) {
                 dispose();
-                //Llamar a la ventana que sigue del inicio de sesion con este formato
-                /*
-                RegistroUsuarioForm registroUsuario = new RegistroUsuarioForm();
-                registroUsuario.InitRegister();
-                */
+                libreriaForm libreria = new libreriaForm();
+                libreria.InitLibreria();
             }
         }
         HabilitarCampos();

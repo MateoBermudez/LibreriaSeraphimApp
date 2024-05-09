@@ -242,11 +242,8 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
             registroExitoso = registrarUsuario();
             if (registroExitoso) {
                 dispose();
-                //Llamar a la ventana que sigue del inicio de sesion con este formato
-                /*
-                RegistroUsuarioForm registroUsuario = new RegistroUsuarioForm();
-                registroUsuario.InitRegister();
-                */
+                libreriaForm libreria = new libreriaForm();
+                libreria.InitLibreria();
             }
         }
         HabilitarCampos();
