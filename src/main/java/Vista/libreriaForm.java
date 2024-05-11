@@ -39,17 +39,16 @@ public class libreriaForm extends javax.swing.JFrame {
     }
 
     public void InitLibreria(int id) {
-        this.id = id;
-        libreria = new libreriaForm();
-        libreria.setSize(libreria.getPreferredSize());
-        libreria.setMaximumSize(libreria.getSize());
-        libreria.setMinimumSize(libreria.getSize());
-        libreria.setPreferredSize(libreria.getSize());
-        libreria.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        libreria.setLocationRelativeTo(null);
-        libreria.getContentPane().setBackground(Color.WHITE);
-        jTextArea.setEditable(false);
-        libreria.setVisible(true);
+            this.id = id;
+            this.setSize(this.getPreferredSize());
+            this.setMaximumSize(this.getSize());
+            this.setMinimumSize(this.getSize());
+            this.setPreferredSize(this.getSize());
+            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.setLocationRelativeTo(null);
+            this.getContentPane().setBackground(Color.WHITE);
+            this.jTextArea.setEditable(false);
+            this.setVisible(true);
     }
     
     public void setImage(){
@@ -1057,7 +1056,7 @@ public class libreriaForm extends javax.swing.JFrame {
                     jTextArea.print();
 
                     CtrlFacturaVentas CtrlFacturaVentas = new CtrlFacturaVentas();
-                    CtrlFacturaVentas.CrearFactura(id, jTxtDate.getText(), jTextArea.getText());
+                    CtrlFacturaVentas.CrearFactura(this.id, this.jTxtDate.getText(), this.jTextArea.getText());
                     JOptionPane.showMessageDialog(this, "Factura creada con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
                 } catch (PrinterException ex){

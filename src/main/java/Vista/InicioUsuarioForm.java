@@ -22,22 +22,20 @@ public class InicioUsuarioForm extends javax.swing.JFrame {
     /**
      * Creates new form InicioUsuarioForm
      */
-    InicioUsuarioForm inicioUsuario;
     
     public InicioUsuarioForm() {
         initComponents();
     }
     
     public void InitLogin() {
-        inicioUsuario = new InicioUsuarioForm();
-        inicioUsuario.setSize(1000, 800);
-        inicioUsuario.setMaximumSize(inicioUsuario.getSize());
-        inicioUsuario.setMinimumSize(inicioUsuario.getSize());
-        inicioUsuario.setPreferredSize(inicioUsuario.getSize());
-        inicioUsuario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        inicioUsuario.setLocationRelativeTo(null);
-        inicioUsuario.getContentPane().setBackground(Color.GRAY);
-        inicioUsuario.setVisible(true);
+        this.setSize(1000, 800);
+        this.setMaximumSize(this.getSize());
+        this.setMinimumSize(this.getSize());
+        this.setPreferredSize(this.getSize());
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+        this.getContentPane().setBackground(Color.GRAY);
+        this.setVisible(true);
     }                                      
 
     

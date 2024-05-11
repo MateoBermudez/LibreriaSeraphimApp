@@ -22,8 +22,6 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
     /**
      * Creates new form RegistroUsuarioForm
      */
-    RegistroUsuarioForm registroUsuario;
-    private CtrlRegistro Controlador = new CtrlRegistro();
     
     
     public RegistroUsuarioForm() {
@@ -32,15 +30,14 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
     
     
     public void InitRegister() {
-        registroUsuario = new RegistroUsuarioForm();
-        registroUsuario.setSize(1000, 800);
-        registroUsuario.setMaximumSize(registroUsuario.getSize());
-        registroUsuario.setMinimumSize(registroUsuario.getSize());
-        registroUsuario.setPreferredSize(registroUsuario.getSize());
-        registroUsuario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        registroUsuario.setLocationRelativeTo(null);
-        registroUsuario.getContentPane().setBackground(Color.GRAY);
-        registroUsuario.setVisible(true);
+        this.setSize(1000, 800);
+        this.setMaximumSize(this.getSize());
+        this.setMinimumSize(this.getSize());
+        this.setPreferredSize(this.getSize());
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+        this.getContentPane().setBackground(Color.GRAY);
+        this.setVisible(true);
     }
     
     
