@@ -4,9 +4,14 @@
  */
 package Vista;
 
+import Controlador.CtrlRegistro;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
+
+import Modelo.UsuarioCRUD;
+import Modelo.mdUsuario;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,7 +23,7 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
      * Creates new form RegistroUsuarioForm
      */
     RegistroUsuarioForm registroUsuario;
-    boolean isReadyName = false, isReadyMail = false, isReadyPassword = false, isReadyID = false, isReadyLastName = false, isReadyPhone = false;
+    private CtrlRegistro Controlador = new CtrlRegistro();
     
     
     public RegistroUsuarioForm() {
@@ -175,78 +180,81 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
 
     private void nameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameFieldKeyPressed
         // TODO add your handling code here:
-
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             nameField.setEnabled(false);
-            isReadyName = true;
-            //Validar si el campo esta ingresado correctamente
+            ValidarRegistro();
         }
-        ValidarRegistro();
     }//GEN-LAST:event_nameFieldKeyPressed
 
     private void idFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idFieldKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             idField.setEnabled(false);
-            isReadyID = true;
-            //Validar si el campo esta ingresado correctamente
+            ValidarRegistro();
         }
-        ValidarRegistro();
     }//GEN-LAST:event_idFieldKeyPressed
 
     private void correoFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_correoFieldKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             correoField.setEnabled(false);
-            isReadyMail = true;
-            //Validar si el campo esta ingresado correctamente
+            ValidarRegistro();
         }
-        ValidarRegistro();
     }//GEN-LAST:event_correoFieldKeyPressed
 
     private void passwordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordFieldKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             passwordField.setEnabled(false);
-            isReadyPassword = true;
-            //Validar si el campo esta ingresado correctamente
+            ValidarRegistro();
         }
-        ValidarRegistro();
     }//GEN-LAST:event_passwordFieldKeyPressed
 
     private void btnRegistrarseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarseMouseClicked
         // TODO add your handling code here:
-        //VALIDAR EL REGISTRO -> si es exitoso, pasar las variables booleanas isReady... a false
+        ValidarRegistro();
     }//GEN-LAST:event_btnRegistrarseMouseClicked
 
     private void apellidosFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apellidosFieldKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             apellidosField.setEnabled(false);
-            isReadyLastName = true;
-            //Validar si el campo esta ingresado correctamente
+            ValidarRegistro();
         }
-        ValidarRegistro();
     }//GEN-LAST:event_apellidosFieldKeyPressed
 
     private void telefonoFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefonoFieldKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             telefonoField.setEnabled(false);
-            isReadyPhone = true;
-            //Validar si el campo esta ingresado correctamente
+            ValidarRegistro();
         }
-        ValidarRegistro();
     }//GEN-LAST:event_telefonoFieldKeyPressed
 
     
     private void ValidarRegistro() {
-        if (isReadyName && isReadyPassword && isReadyMail && isReadyID && isReadyPhone && isReadyLastName) {
-            //VALIDAR EL REGISTRO -> si es exitoso, pasar las variables booleanas del if a false
+        boolean validarDatos, registroExitoso;
+        CtrlRegistro controladorRegistroUsuario = new CtrlRegistro();
+        String Contrasena = capturarContrasena();
+        validarDatos = controladorRegistroUsuario.CapturarDatos(nameField.getText(), apellidosField.getText(), idField.getText(),
+                correoField.getText(), telefonoField.getText(), Contrasena);
+        if (validarDatos) {
+            registroExitoso = registrarUsuario();
+            if (registroExitoso) {
+                dispose();
+                libreriaForm libreria = new libreriaForm();
+                libreria.InitLibreria();
+            }
         }
-        else {
-            //Si no es posible decir el por que
+        HabilitarCampos();
+    }
+    
+    private String capturarContrasena() {
+        StringBuilder Contrasena = new StringBuilder();
+        for (int i = 0; i < passwordField.getPassword().length; i++) {
+            Contrasena.append(passwordField.getPassword()[i]);
         }
+        return Contrasena.toString();
     }
     
     
@@ -304,4 +312,32 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
     private javax.swing.JLabel upIngresar;
     private javax.swing.JLabel upRegistrarse;
     // End of variables declaration//GEN-END:variables
+
+    private void HabilitarCampos() {
+        passwordField.setEnabled(true);
+        idField.setEnabled(true);
+        nameField.setEnabled(true);
+        correoField.setEnabled(true);
+        telefonoField.setEnabled(true);
+        apellidosField.setEnabled(true);
+    }
+
+    private boolean registrarUsuario(){
+        String id = idField.getText();
+        mdUsuario usuarioExistente = CtrlRegistro.consultarUsuario(id);
+        if (usuarioExistente == null) {
+            String nombres = nameField.getText();
+            String apellidos = apellidosField.getText();
+            String correo = correoField.getText();
+            String telefono = telefonoField.getText();
+            mdUsuario usuario = new mdUsuario(nombres, apellidos, id, correo, telefono, capturarContrasena());
+            UsuarioCRUD usuarioCRUD = new UsuarioCRUD();
+            usuarioCRUD.agregarUsuario(usuario);
+            JOptionPane.showMessageDialog(null, "Usuario registrado correctamente");
+            return true;
+        }
+        JOptionPane.showMessageDialog(null, "El usuario ya existe");
+        return false;
+    }
+
 }
