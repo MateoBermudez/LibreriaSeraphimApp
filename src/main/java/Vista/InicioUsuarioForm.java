@@ -157,6 +157,7 @@ public class InicioUsuarioForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresarMouseClicked
 
     private void ValidarRegistro() {
+        int id;
         boolean validarDatos, sesionIniciada;
         CtrlInicio controladorInicioUsuario = new CtrlInicio();
         String Contrasena = capturarContrasena();
@@ -164,9 +165,10 @@ public class InicioUsuarioForm extends javax.swing.JFrame {
         if (validarDatos) {
             sesionIniciada = inicioUsuario();
             if (sesionIniciada) {
+                id = Integer.parseInt(idField.getText());
                 dispose();
                 libreriaForm libreria = new libreriaForm();
-                libreria.InitLibreria();
+                libreria.InitLibreria(id);
             }
         }
         HabilitarCampos();

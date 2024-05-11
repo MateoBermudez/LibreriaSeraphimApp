@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import Controlador.CtrlFacturaVentas;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.print.PrinterException;
@@ -19,7 +21,8 @@ import java.util.logging.Logger;
 public class libreriaForm extends javax.swing.JFrame {
 
     private double total= 0.0;
-    private int x= 0;
+    private int x= 0, id;
+    private boolean habilitarPagar = false;
 
     libreriaForm libreria;
     /**
@@ -35,7 +38,8 @@ public class libreriaForm extends javax.swing.JFrame {
         setTime();
     }
 
-    public void InitLibreria() {
+    public void InitLibreria(int id) {
+        this.id = id;
         libreria = new libreriaForm();
         libreria.setSize(libreria.getPreferredSize());
         libreria.setMaximumSize(libreria.getSize());
@@ -44,6 +48,7 @@ public class libreriaForm extends javax.swing.JFrame {
         libreria.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         libreria.setLocationRelativeTo(null);
         libreria.getContentPane().setBackground(Color.WHITE);
+        jTextArea.setEditable(false);
         libreria.setVisible(true);
     }
     
@@ -1039,16 +1044,29 @@ public class libreriaForm extends javax.swing.JFrame {
                      +"TOTAL:\t\t\t"+(total+(total*0.19))+"\n"
            +"**************************Gracias****************************\n");
            btnTotal.setEnabled(false);
+           habilitarPagar = true;
        }
     }//GEN-LAST:event_btnTotalActionPerformed
 
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
         if (total != 0){
-            try{
-                jTextArea.print();
-            } catch (PrinterException ex){
-                Logger.getLogger(libreriaForm.class.getName()).log(Level.SEVERE, null, ex);
+            if (habilitarPagar) {
+                habilitarPagar = false;
+                try{
+                    jTextArea.print();
+
+                    CtrlFacturaVentas CtrlFacturaVentas = new CtrlFacturaVentas();
+                    CtrlFacturaVentas.CrearFactura(id, jTxtDate.getText(), jTextArea.getText());
+                    JOptionPane.showMessageDialog(this, "Factura creada con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+                } catch (PrinterException ex){
+                    Logger.getLogger(libreriaForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                reset();
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Primero debes calcular el total en la factura", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(this, "No has seleccionado nada", "Error", JOptionPane.ERROR_MESSAGE);
@@ -1059,7 +1077,7 @@ public class libreriaForm extends javax.swing.JFrame {
     private void BtnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExitActionPerformed
        dispose();
        InicioUsuarioForm InicioUsuario = new InicioUsuarioForm();
-        InicioUsuario.InitLogin();
+       InicioUsuario.InitLogin();
     }//GEN-LAST:event_BtnExitActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed

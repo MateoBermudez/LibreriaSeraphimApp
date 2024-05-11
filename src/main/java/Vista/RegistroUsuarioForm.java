@@ -233,6 +233,7 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
 
     
     private void ValidarRegistro() {
+        int id;
         boolean validarDatos, registroExitoso;
         CtrlRegistro controladorRegistroUsuario = new CtrlRegistro();
         String Contrasena = capturarContrasena();
@@ -241,9 +242,10 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
         if (validarDatos) {
             registroExitoso = registrarUsuario();
             if (registroExitoso) {
+                id = Integer.parseInt(idField.getText());
                 dispose();
                 libreriaForm libreria = new libreriaForm();
-                libreria.InitLibreria();
+                libreria.InitLibreria(id);
             }
         }
         HabilitarCampos();
