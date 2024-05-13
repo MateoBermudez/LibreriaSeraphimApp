@@ -4,12 +4,13 @@
  */
 package Vista;
 
-/**
- *
- * @author user
- */
+import Controlador.SeguridadArchivos;
+
+
+
 public class Main {
     public static void main(String[] args) {
+        SeguridadArchivos.DesencriptarArchivos();
         InicioUsuarioForm InicioUsuario = new InicioUsuarioForm();
         InicioUsuario.InitLogin();
     }

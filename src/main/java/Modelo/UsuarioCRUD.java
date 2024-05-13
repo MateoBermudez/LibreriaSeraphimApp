@@ -7,7 +7,7 @@ import java.util.*;
 import java.io.*;
 public class UsuarioCRUD {
     private List<mdUsuario> usuarios;
-    private final String archivoJSON = "usuarios.json";
+    private final String archivoJSON = "data/json/usuarios.json";
     // Constructor
     public UsuarioCRUD() {
         this.usuarios = cargarUsuariosDesdeJSON();

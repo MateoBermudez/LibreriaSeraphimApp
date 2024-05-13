@@ -5,12 +5,13 @@
 package Vista;
 
 import Controlador.CtrlInicio;
-import Controlador.CtrlRegistro;
-import Modelo.UsuarioCRUD;
+import Controlador.SeguridadArchivos;
 import Modelo.mdUsuario;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.*;
 
 /**
@@ -32,11 +33,22 @@ public class InicioUsuarioForm extends javax.swing.JFrame {
         this.setMaximumSize(this.getSize());
         this.setMinimumSize(this.getSize());
         this.setPreferredSize(this.getSize());
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
+        this.setCloseOperation();
         this.getContentPane().setBackground(Color.GRAY);
         this.setVisible(true);
-    }                                      
+    }
+
+    private void setCloseOperation() {
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                SeguridadArchivos.EncriptarArchivos();
+                System.exit(0);
+            }
+        });
+    }
 
     
     /**

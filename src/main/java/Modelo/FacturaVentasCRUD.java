@@ -7,7 +7,7 @@ import java.util.*;
 
 public class FacturaVentasCRUD {
     private List<mdFacturaVentas> facturaVentas;
-    private final String archivoJSON = "facturaVentas.json";
+    private final String archivoJSON = "data/json/facturaVentas.json";
 
     public FacturaVentasCRUD() {
         this.facturaVentas = cargarFacturaVentasDesdeJSON();

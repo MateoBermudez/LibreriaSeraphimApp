@@ -7,8 +7,11 @@ package Vista;
 import Controlador.CtrlRegistro;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
+import Controlador.SeguridadArchivos;
 import Modelo.UsuarioCRUD;
 import Modelo.mdUsuario;
 import javax.swing.JOptionPane;
@@ -34,10 +37,21 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
         this.setMaximumSize(this.getSize());
         this.setMinimumSize(this.getSize());
         this.setPreferredSize(this.getSize());
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
+        this.setCloseOperation();
         this.getContentPane().setBackground(Color.GRAY);
         this.setVisible(true);
+    }
+
+    private void setCloseOperation() {
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                SeguridadArchivos.EncriptarArchivos();
+                System.exit(0);
+            }
+        });
     }
     
     

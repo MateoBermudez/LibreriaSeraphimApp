@@ -5,9 +5,12 @@
 package Vista;
 
 import Controlador.CtrlFacturaVentas;
+import Controlador.SeguridadArchivos;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.print.PrinterException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -39,16 +42,27 @@ public class libreriaForm extends javax.swing.JFrame {
     }
 
     public void InitLibreria(int id) {
-            this.id = id;
-            this.setSize(this.getPreferredSize());
-            this.setMaximumSize(this.getSize());
-            this.setMinimumSize(this.getSize());
-            this.setPreferredSize(this.getSize());
-            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            this.setLocationRelativeTo(null);
-            this.getContentPane().setBackground(Color.WHITE);
-            this.jTextArea.setEditable(false);
-            this.setVisible(true);
+        this.id = id;
+        this.setSize(this.getPreferredSize());
+        this.setMaximumSize(this.getSize());
+        this.setMinimumSize(this.getSize());
+        this.setPreferredSize(this.getSize());
+        this.setLocationRelativeTo(null);
+        this.setCloseOperation();
+        this.getContentPane().setBackground(Color.WHITE);
+        this.jTextArea.setEditable(false);
+        this.setVisible(true);
+    }
+
+    private void setCloseOperation() {
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                SeguridadArchivos.EncriptarArchivos();
+                System.exit(0);
+            }
+        });
     }
     
     public void setImage(){
