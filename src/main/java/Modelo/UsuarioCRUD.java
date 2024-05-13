@@ -1,6 +1,6 @@
 package Modelo;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.*;
@@ -32,7 +32,7 @@ public class UsuarioCRUD {
 
     private void guardarUsuariosEnJSON() {
         try (Writer writer = new FileWriter(archivoJSON)) {
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
             gson.toJson(usuarios, writer);
         } catch (IOException e) {
             e.printStackTrace();

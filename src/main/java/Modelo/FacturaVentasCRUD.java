@@ -1,6 +1,7 @@
 package Modelo;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.util.*;
@@ -32,7 +33,7 @@ public class FacturaVentasCRUD {
 
     private void guardarFacturaVentasEnJSON() {
         try(Writer writer = new FileWriter(archivoJSON)) {
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
             gson.toJson(facturaVentas, writer);
         } catch (IOException e) {
             e.printStackTrace();

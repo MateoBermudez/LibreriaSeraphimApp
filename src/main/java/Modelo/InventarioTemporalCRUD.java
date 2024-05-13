@@ -1,6 +1,7 @@
 package Modelo;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.*;
@@ -34,7 +35,7 @@ private List<mdInventario> inventarioTemporal;
 
     private void guardarInventarioTemporalEnJSON() {
         try(Writer writer = new FileWriter(archivoJSON)) {
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
             gson.toJson(inventarioTemporal, writer);
         } catch (IOException e) {
             e.printStackTrace();
