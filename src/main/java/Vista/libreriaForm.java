@@ -6,6 +6,9 @@ package Vista;
 
 import Controlador.CtrlFacturaVentas;
 import Controlador.SeguridadArchivos;
+import Controlador.CtrlLibreria;
+import Modelo.InventarioCRUD;
+import Modelo.InventarioTemporalCRUD;
 
 import javax.swing.*;
 import java.awt.*;
@@ -925,14 +928,19 @@ public class libreriaForm extends javax.swing.JFrame {
     private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
         int qty = Integer.parseInt(jSpinner7.getValue().toString());
         if(qtyisZero(qty) && jCheckBox7.isSelected()){
-            x++;
-            if (x==1){
-                Biblioteca();
+            if (CtrlLibreria.CantidadLibros("6", qty)) {
+                CtrlLibreria.ActualizarInventarioTemporal("6", qty);
+                x++;
+                if (x == 1) {
+                    Biblioteca();
+                }
+                double precio = qty * 50000;
+                total += precio;
+                jTextArea.setText(jTextArea.getText() + x + ". " + jLabel33.getText() + "\t\t\t" + precio + "\n");
+                dudate();
+            } else {
+                jCheckBox7.setSelected(false);
             }
-            double precio = qty*50000;
-            total += precio;
-            jTextArea.setText(jTextArea.getText()+x+". "+jLabel33.getText()+"\t\t\t"+precio+"\n");
-            dudate();
         } else {
             jCheckBox7.setSelected(false);
         }
@@ -941,14 +949,20 @@ public class libreriaForm extends javax.swing.JFrame {
     private void jCheckBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox6ActionPerformed
         int qty = Integer.parseInt(jSpinner6.getValue().toString());
         if(qtyisZero(qty) && jCheckBox6.isSelected()){
-            x++;
-            if (x==1){
-                Biblioteca();
+            if (CtrlLibreria.CantidadLibros("4", qty)) {
+                CtrlLibreria.ActualizarInventarioTemporal("4", qty);
+
+                x++;
+                if (x == 1) {
+                    Biblioteca();
+                }
+                double precio = qty * 45000;
+                total += precio;
+                jTextArea.setText(jTextArea.getText() + x + ". " + jLabel28.getText() + "\t\t\t" + precio + "\n");
+                dudate();
+            } else {
+                jCheckBox6.setSelected(false);
             }
-            double precio = qty*45000;
-            total += precio;
-            jTextArea.setText(jTextArea.getText()+x+". "+jLabel28.getText()+"\t\t\t"+precio+"\n");
-            dudate();
         } else {
             jCheckBox6.setSelected(false);
         }
@@ -957,7 +971,10 @@ public class libreriaForm extends javax.swing.JFrame {
     private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
         int qty = Integer.parseInt(jSpinner5.getValue().toString());
         if(qtyisZero(qty) && jCheckBox5.isSelected()){
-            x++;
+            if (CtrlLibreria.CantidadLibros("3", qty)) {
+                CtrlLibreria.ActualizarInventarioTemporal("3", qty);
+
+                x++;
             if (x==1){
                 Biblioteca();
             }
@@ -965,6 +982,9 @@ public class libreriaForm extends javax.swing.JFrame {
             total += precio;
             jTextArea.setText(jTextArea.getText()+x+". "+jLabel27.getText()+"\t\t\t"+precio+"\n");
             dudate();
+            } else {
+                jCheckBox5.setSelected(false);
+            }
         } else {
             jCheckBox5.setSelected(false);
         }
@@ -973,14 +993,20 @@ public class libreriaForm extends javax.swing.JFrame {
     private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
         int qty = Integer.parseInt(jSpinner4.getValue().toString());
         if(qtyisZero(qty) && jCheckBox4.isSelected()){
-            x++;
-            if (x==1){
-                Biblioteca();
+            if (CtrlLibreria.CantidadLibros("5", qty)) {
+                CtrlLibreria.ActualizarInventarioTemporal("5", qty);
+
+                x++;
+                if (x == 1) {
+                    Biblioteca();
+                }
+                double precio = qty * 60000;
+                total += precio;
+                jTextArea.setText(jTextArea.getText() + x + ". " + jLabel18.getText() + "\t\t\t" + precio + "\n");
+                dudate();
+            } else {
+                jCheckBox4.setSelected(false);
             }
-            double precio = qty*60000;
-            total += precio;
-            jTextArea.setText(jTextArea.getText()+x+". "+jLabel18.getText()+"\t\t\t"+precio+"\n");
-            dudate();
         } else {
             jCheckBox4.setSelected(false);
         }
@@ -989,14 +1015,20 @@ public class libreriaForm extends javax.swing.JFrame {
     private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
         int qty = Integer.parseInt(jSpinner3.getValue().toString());
         if(qtyisZero(qty) && jCheckBox3.isSelected()){
-            x++;
-            if (x==1){
-                Biblioteca();
+            if (CtrlLibreria.CantidadLibros("2", qty)) {
+                CtrlLibreria.ActualizarInventarioTemporal("2", qty);
+
+                x++;
+                if (x == 1) {
+                    Biblioteca();
+                }
+                double precio = qty * 50000;
+                total += precio;
+                jTextArea.setText(jTextArea.getText() + x + ". " + jLabel13.getText() + "\t\t" + precio + "\n");
+                dudate();
+            } else {
+                jCheckBox3.setSelected(false);
             }
-            double precio = qty*55000;
-            total += precio;
-            jTextArea.setText(jTextArea.getText()+x+". "+jLabel13.getText()+"\t\t"+precio+"\n");
-            dudate();
         } else {
             jCheckBox3.setSelected(false);
         }
@@ -1012,14 +1044,19 @@ public class libreriaForm extends javax.swing.JFrame {
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         int qty = Integer.parseInt(jSpinner1.getValue().toString());
         if(qtyisZero(qty) && jCheckBox1.isSelected()){
-            x++;
-            if (x==1){
-                Biblioteca();
+            if (CtrlLibreria.CantidadLibros("1", qty)) {
+                CtrlLibreria.ActualizarInventarioTemporal("1", qty);
+                x++;
+                if (x == 1) {
+                    Biblioteca();
+                }
+                double precio = qty * 60000;
+                total += precio;
+                jTextArea.setText(jTextArea.getText() + x + ". " + jLabel3.getText() + "\t\t" + precio + "\n");
+                dudate();
+            } else {
+                jCheckBox1.setSelected(false);
             }
-            double precio = qty*60000;
-            total += precio;
-            jTextArea.setText(jTextArea.getText()+x+". "+jLabel3.getText()+"\t\t"+precio+"\n");
-            dudate();
         } else {
             jCheckBox1.setSelected(false);
         }
@@ -1067,11 +1104,15 @@ public class libreriaForm extends javax.swing.JFrame {
             if (habilitarPagar) {
                 habilitarPagar = false;
                 try{
+                    dispose();
                     jTextArea.print();
-
+                    InventarioCRUD InventarioCRUD = new InventarioCRUD();
+                    InventarioCRUD.ActualizarInventario();
                     CtrlFacturaVentas CtrlFacturaVentas = new CtrlFacturaVentas();
                     CtrlFacturaVentas.CrearFactura(this.id, this.jTxtDate.getText(), this.jTextArea.getText());
                     JOptionPane.showMessageDialog(this, "Factura creada con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    InicioUsuarioForm InicioUsuario = new InicioUsuarioForm();
+                    InicioUsuario.InitLogin();
 
                 } catch (PrinterException ex){
                     Logger.getLogger(libreriaForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -1089,11 +1130,15 @@ public class libreriaForm extends javax.swing.JFrame {
 
     private void BtnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExitActionPerformed
        dispose();
+        InventarioTemporalCRUD InventarioTemporalCRUD = new InventarioTemporalCRUD();
+        InventarioTemporalCRUD.ActualizarInventarioTemporal();
        InicioUsuarioForm InicioUsuario = new InicioUsuarioForm();
        InicioUsuario.InitLogin();
     }//GEN-LAST:event_BtnExitActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        InventarioTemporalCRUD InventarioTemporalCRUD = new InventarioTemporalCRUD();
+        InventarioTemporalCRUD.ActualizarInventarioTemporal();
         reset();
     }//GEN-LAST:event_btnResetActionPerformed
 
