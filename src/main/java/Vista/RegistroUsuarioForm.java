@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Objects;
 import javax.swing.JFrame;
 
 import Controlador.SeguridadArchivos;
@@ -25,14 +26,20 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
     /**
      * Creates new form RegistroUsuarioForm
      */
-    
-    
+    boolean admin, adminSection;
+    String externalID;
+
     public RegistroUsuarioForm() {
         initComponents();
+
     }
     
     
-    public void InitRegister() {
+    public void InitRegister(boolean isAdmin, String id, boolean adminSection) {
+        this.admin = isAdmin;
+        this.externalID = id;
+        this.adminSection = adminSection;
+        idField.setText(id);
         this.setSize(1000, 800);
         this.setMaximumSize(this.getSize());
         this.setMinimumSize(this.getSize());
@@ -184,6 +191,9 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
 
     private void upIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_upIngresarMouseClicked
         // TODO add your handling code here:
+        if (!Objects.equals(externalID, "")) {
+            return;
+        }
         dispose();
         InicioUsuarioForm inicioUsuario = new InicioUsuarioForm();
         inicioUsuario.InitLogin();
@@ -249,14 +259,14 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
         CtrlRegistro controladorRegistroUsuario = new CtrlRegistro();
         String Contrasena = capturarContrasena();
         validarDatos = controladorRegistroUsuario.CapturarDatos(nameField.getText(), apellidosField.getText(), idField.getText(),
-                correoField.getText(), telefonoField.getText(), Contrasena);
+                correoField.getText(), telefonoField.getText(), Contrasena, admin);
         if (validarDatos) {
             registroExitoso = registrarUsuario();
             if (registroExitoso) {
                 id = Integer.parseInt(idField.getText());
                 dispose();
                 libreriaForm libreria = new libreriaForm();
-                libreria.InitLibreria(id);
+                libreria.InitLibreria(id, adminSection);
             }
         }
         HabilitarCampos();
@@ -343,7 +353,7 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
             String apellidos = apellidosField.getText();
             String correo = correoField.getText();
             String telefono = telefonoField.getText();
-            mdUsuario usuario = new mdUsuario(nombres, apellidos, id, correo, telefono, capturarContrasena());
+            mdUsuario usuario = new mdUsuario(nombres, apellidos, id, correo, telefono, capturarContrasena(), admin);
             UsuarioCRUD usuarioCRUD = new UsuarioCRUD();
             usuarioCRUD.agregarUsuario(usuario);
             JOptionPane.showMessageDialog(null, "Usuario registrado correctamente");

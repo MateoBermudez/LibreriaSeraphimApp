@@ -57,4 +57,53 @@ public class UsuarioCRUD {
         return null;
     }
 
+    public String[] ObtenerDocumentos() {
+        int tam = usuarios.size();
+        String[] documentos = new String[tam];
+        int i = 0;
+        for (mdUsuario usuario : usuarios) {
+            documentos[i++] = String.valueOf(usuario.getId());
+        }
+        return EliminarDocumentosDuplicados(documentos, tam);
+    }
+
+    private String[] EliminarDocumentosDuplicados(String[] documentos, int i) {
+        int duplicados = 0;
+        for (int j = 0; j < i; j++) {
+            for (int k = j + 1; k < i; k++) {
+                if (documentos[j].equals(documentos[k]) && !documentos[j].isEmpty()) {
+                    documentos[k] = "";
+                    duplicados++;
+                }
+            }
+        }
+        String[] documentosSinDuplicados = new String[i - duplicados];
+        for (int j = 0, k = 0; j < i; j++) {
+            if (!documentos[j].isEmpty()) {
+                documentosSinDuplicados[k++] = documentos[j];
+            }
+        }
+        return documentosSinDuplicados;
+    }
+
+    public String[] FiltrarUsuario(String id, int index) {
+        int i = 0, j = 0;
+        boolean igualdad;
+        String[] documentosFiltrados = new String[usuarios.size()];
+        char[] idFiltrado = id.toCharArray();
+        for (mdUsuario usuario : usuarios) {
+            char[] idUsuario = usuario.getId().toCharArray();
+            igualdad = true;
+            for (i = 0; i < index; i++) {
+                if (idFiltrado[i] != idUsuario[i]) {
+                    igualdad = false;
+                    break;
+                }
+            }
+            if (igualdad) {
+                documentosFiltrados[j++] = usuario.getId();
+            }
+        }
+        return EliminarDocumentosDuplicados(documentosFiltrados, j);
+    }
 }

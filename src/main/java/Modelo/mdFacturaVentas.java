@@ -3,12 +3,13 @@ package Modelo;
 public class mdFacturaVentas {
 
     private String fecha, factura;
-    private int id;
+    private int id, codigo;
 
-    public mdFacturaVentas(int id, String fecha, String factura) {
+    public mdFacturaVentas(int id, String fecha, String factura, int codigo) {
         this.id = id;
         this.fecha = fecha;
         this.factura = factura;
+        this.codigo = codigo;
     }
 
     public String getFactura() {
@@ -33,5 +34,13 @@ public class mdFacturaVentas {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public int getCodigo() {
+        return codigo;
     }
 }

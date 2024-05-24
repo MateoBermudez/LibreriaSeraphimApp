@@ -5,7 +5,8 @@
     "id": "1017925944",
     "correo": "mateo_bermudez82231@elpoli.edu.co",
     "telefono": "3219784380",
-    "contrasena": "Mateo123*"
+    "contrasena": "Mateo123*",
+    "admin": true
   },
   {
     "nombre": "Daniel",
@@ -13,7 +14,8 @@
     "id": "1035972391",
     "correo": "daniel_cardona82231@elpoli.edu.co",
     "telefono": "3013513132",
-    "contrasena": "Daniel123*"
+    "contrasena": "Daniel123*",
+    "admin": true
   },
   {
     "nombre": "Emmanuel",
@@ -21,14 +23,7 @@
     "id": "1013341987",
     "correo": "emmanuel_arango82231@elpoli.edu.co",
     "telefono": "3193696490",
-    "contrasena": "Emmanuel123*"
-  },
-  {
-    "nombre": "Juan",
-    "apellido": "Perez",
-    "id": "100000000",
-    "correo": "juan@gmail.com",
-    "telefono": "30000000",
-    "contrasena": "Juan123*"
+    "contrasena": "Emmanuel123*",
+    "admin": true
   }
 ]

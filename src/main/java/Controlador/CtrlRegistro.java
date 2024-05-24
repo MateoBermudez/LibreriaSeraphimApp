@@ -10,8 +10,8 @@ import javax.swing.JOptionPane;
 
 
 public class CtrlRegistro {
-    public boolean CapturarDatos(String nombre, String apellidos, String id, String correo, String telefono, String Contrasena) {
-        mdUsuario User = new mdUsuario(nombre, apellidos, id, correo, telefono, Contrasena);
+    public boolean CapturarDatos(String nombre, String apellidos, String id, String correo, String telefono, String Contrasena, boolean admin) {
+        mdUsuario User = new mdUsuario(nombre, apellidos, id, correo, telefono, Contrasena, admin);
         boolean vNombre, vApellidos, vID, vCorreo, vTelefono, vContrasena;
         vNombre = validarNombre(nombre);
         vApellidos = validarApellidos(apellidos);
@@ -22,7 +22,7 @@ public class CtrlRegistro {
         return vID && vContrasena && vNombre && vApellidos && vCorreo && vTelefono;
     }
     
-    private static boolean validarId(String id) {
+    public static boolean validarId(String id) {
         boolean vAux = id.matches("\\d{5,14}");
         if (!vAux) {
             JOptionPane.showMessageDialog(null, "Ingrese una identificacion correcta, entre 5 y 14 digitos. ");
@@ -44,6 +44,11 @@ public class CtrlRegistro {
     public static mdUsuario consultarUsuario(String id) {
         UsuarioCRUD usuarioCRUD = new UsuarioCRUD();
         return usuarioCRUD.validarExistenciaUsuario(id);
+    }
+
+    public static String[] FiltrarUsuario(String id, int index) {
+        UsuarioCRUD usuarioCRUD = new UsuarioCRUD();
+        return usuarioCRUD.FiltrarUsuario(id, index);
     }
 
     private boolean validarNombre(String nombre) {

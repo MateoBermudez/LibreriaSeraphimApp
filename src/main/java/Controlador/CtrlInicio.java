@@ -17,7 +17,7 @@ public class CtrlInicio {
         return vID && vContrasena;
     }
     
-    private static boolean validarId(String id) {
+    public static boolean validarId(String id) {
         boolean vAux = id.matches("\\d{5,14}");
         if (!vAux) {
             JOptionPane.showMessageDialog(null, "Ingrese una identificacion correcta, entre 5 y 14 digitos. ");

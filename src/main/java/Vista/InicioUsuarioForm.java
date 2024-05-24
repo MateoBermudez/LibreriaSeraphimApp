@@ -135,14 +135,14 @@ public class InicioUsuarioForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
         RegistroUsuarioForm registroUsuario = new RegistroUsuarioForm();
-        registroUsuario.InitRegister();
+        registroUsuario.InitRegister(false, "", false);
     }//GEN-LAST:event_registrarseMouseClicked
 
     private void noAccMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_noAccMouseClicked
         // TODO add your handling code here:
         dispose();
         RegistroUsuarioForm registroUsuario = new RegistroUsuarioForm();
-        registroUsuario.InitRegister();
+        registroUsuario.InitRegister(false, "", false);
     }//GEN-LAST:event_noAccMouseClicked
 
     private void idFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idFieldKeyPressed
@@ -178,7 +178,7 @@ public class InicioUsuarioForm extends javax.swing.JFrame {
                 id = Integer.parseInt(idField.getText());
                 dispose();
                 libreriaForm libreria = new libreriaForm();
-                libreria.InitLibreria(id);
+                libreria.InitLibreria(id, false);
             }
         }
         HabilitarCampos();

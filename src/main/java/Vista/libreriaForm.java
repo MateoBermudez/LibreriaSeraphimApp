@@ -28,7 +28,7 @@ public class libreriaForm extends javax.swing.JFrame {
 
     private double total= 0.0;
     private int x= 0, id;
-    private boolean habilitarPagar = false;
+    private boolean habilitarPagar = false, adminSection;
 
     libreriaForm libreria;
     /**
@@ -44,8 +44,9 @@ public class libreriaForm extends javax.swing.JFrame {
         setTime();
     }
 
-    public void InitLibreria(int id) {
+    public void InitLibreria(int id, boolean adminSection) {
         this.id = id;
+        this.adminSection = adminSection;
         this.setSize(this.getPreferredSize());
         this.setMaximumSize(this.getSize());
         this.setMinimumSize(this.getSize());
@@ -1104,16 +1105,12 @@ public class libreriaForm extends javax.swing.JFrame {
             if (habilitarPagar) {
                 habilitarPagar = false;
                 try{
-                    dispose();
                     jTextArea.print();
-                    InventarioCRUD InventarioCRUD = new InventarioCRUD();
-                    InventarioCRUD.ActualizarInventario();
                     CtrlFacturaVentas CtrlFacturaVentas = new CtrlFacturaVentas();
                     CtrlFacturaVentas.CrearFactura(this.id, this.jTxtDate.getText(), this.jTextArea.getText());
                     JOptionPane.showMessageDialog(this, "Factura creada con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                    InicioUsuarioForm InicioUsuario = new InicioUsuarioForm();
-                    InicioUsuario.InitLogin();
-
+                    InventarioCRUD InventarioCRUD = new InventarioCRUD();
+                    InventarioCRUD.ActualizarInventario();
                 } catch (PrinterException ex){
                     Logger.getLogger(libreriaForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -1129,11 +1126,17 @@ public class libreriaForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void BtnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExitActionPerformed
-       dispose();
+        if (adminSection) {
+            dispose();
+            ListaFacturasForm ListaFacturas = new ListaFacturasForm();
+            ListaFacturas.InitListaFacturas();
+            return;
+        }
+        dispose();
         InventarioTemporalCRUD InventarioTemporalCRUD = new InventarioTemporalCRUD();
         InventarioTemporalCRUD.ActualizarInventarioTemporal();
-       InicioUsuarioForm InicioUsuario = new InicioUsuarioForm();
-       InicioUsuario.InitLogin();
+        InicioUsuarioForm InicioUsuario = new InicioUsuarioForm();
+        InicioUsuario.InitLogin();
     }//GEN-LAST:event_BtnExitActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
