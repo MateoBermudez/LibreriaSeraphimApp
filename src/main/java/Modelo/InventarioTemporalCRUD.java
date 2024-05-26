@@ -42,6 +42,15 @@ private List<mdInventario> inventarioTemporal;
         }
     }
 
+    public void eliminarInventarioTemporal(String cod) {
+        for (mdInventario inventario : inventarioTemporal) {
+            if (inventario.getCod().equals(cod)) {
+                this.inventarioTemporal.remove(inventario);
+                guardarInventarioTemporalEnJSON();
+                return;
+            }
+        }
+    }
 
     public void actualizarCantidad(String id, int cantidad){
         for (mdInventario inventario : inventarioTemporal) {
@@ -68,6 +77,8 @@ private List<mdInventario> inventarioTemporal;
             e.printStackTrace();
         }
     }
+
+
 
 
 }

@@ -11,6 +11,7 @@ import Modelo.InventarioCRUD;
 import Modelo.InventarioTemporalCRUD;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -19,16 +20,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import Vista.InventarioForm;
 
 /**
  *
  * @author E2112
  */
 public class libreriaForm extends javax.swing.JFrame {
-
     private double total= 0.0;
     private int x= 0, id;
     private boolean habilitarPagar = false, adminSection;
+
+
 
     libreriaForm libreria;
     /**
@@ -40,6 +43,7 @@ public class libreriaForm extends javax.swing.JFrame {
     }
     
     public void init(){
+        this.setSize(1000, 800);
         setImage();
         setTime();
     }
@@ -311,7 +315,7 @@ public class libreriaForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addGap(1, 1, 1)
-                .addGroup(jLabelimagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLabelimagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)

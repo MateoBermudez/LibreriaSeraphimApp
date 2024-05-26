@@ -22,4 +22,6 @@ public class CtrlLibreria {
         InventarioTemporalCRUD inventarioCRUD = new InventarioTemporalCRUD();
         inventarioCRUD.actualizarCantidad(id, cantidad);
     }
+
+
 }

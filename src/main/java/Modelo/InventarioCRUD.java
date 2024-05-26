@@ -1,4 +1,5 @@
 package Modelo;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -50,17 +51,16 @@ public class InventarioCRUD {
         return null;
     }
 
-    public void eliminarInventario(String nombre) {
+    //Eliminar por codigo
+    public void eliminarInventario(String cod) {
         for (mdInventario inventario : inventario) {
-            if (inventario.getNombre().equals(nombre)) {
+            if (inventario.getCod().equals(cod)) {
                 this.inventario.remove(inventario);
                 guardarInventarioEnJSON();
                 return;
             }
         }
     }
-
-
     public void ActualizarInventario() {
         try {
             File archivoTemporal = new File("data/json/inventarioTemporal.json");
@@ -94,6 +94,12 @@ public class InventarioCRUD {
             }
         }
         return false;
+    }
+
+    public void actualizarTabla(ArrayList libros) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.writerWithDefaultPrettyPrinter().writeValue(new File("data/json/inventario.json"), libros);
+        mapper.writerWithDefaultPrettyPrinter().writeValue(new File("data/json/inventarioTemporal.json"), libros);
     }
 
     /*public static void main(String[] args) {
