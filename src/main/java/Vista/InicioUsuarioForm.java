@@ -311,6 +311,7 @@ public class InicioUsuarioForm extends javax.swing.JFrame {
     }//GEN-LAST:event_headerMouseDragged
 
     private void XexitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_XexitMouseClicked
+        SeguridadArchivos.EncriptarArchivos();
         System.exit(0);
     }//GEN-LAST:event_XexitMouseClicked
 
