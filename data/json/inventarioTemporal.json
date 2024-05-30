@@ -1,1 +1,37 @@
-iPPk+RyaX1O2DEhNguYP6pLo+H/mxgShqo5VTp9EcxcU0N3jTy9m0sqRH9O+W++7r1l2WP1JB35w4AscriIgZaZAYTFvXQBs+8VoDPWJ2M4fcm+rCuahemfl3bFjj6DJ/6rXf3AcW1KX+ToNlTp4m9caPspG+RZKzy8OehSU8247ESSa9M3FYusTUIKyrJdJSoQAdbYmagkwcmGCYvk3yq8WWc7O3q7hs14nRU2FaBKeshqz6uhvABGu7axAKIM5hPTK+5EYh0VBqISd6Mmm4XRzGRYo9rtZXdIEqSCk+G0J2E0/u9fflrfuRkfbwloSSFhg40FrGSUavPQBy1Qg4pGmwrVtwV1cOMuVNq6avKGz6gGum2edDoP3F4B3RdRa/NHvvioLlKl3EXDxC3isr4yJZhA3efqauJdUwuqpux6GQtbD3QWeb3zOgKFQADizIOh0T978F/K1fuF55HrTSdsIVBuHvrXm05oEPeweGtPqQLytkQkJR+QSC9Nv/3EovHt4uC/M+2lQaRSeiSS839uGoC+cQXRxrWOyews5xVVvr2+JoUHnw23ug87qt1mTE/R6CWsY+JzLAgci6pUEbUMBQXhmMm8RIrBElJ0gpFBdAWVxjxx0J6tA1ju87pn2Ak1mKktSq0cskWq5cDpVojhOCAucpygBZvbdN8q0fpYkhjU7WetiHFbc5Xk7jKj50tABwCjBHX+2HSXjzwYV7ndhBSYiEPwBsg8Cl6jabaSwIoGLSSjL9fACPLYfxGe+vj9mbdez03ktkwAaa52fgVNR2HEgByh9NrGUZjwLf9++5jKx3tvT9s+2oQAyKiOHisOqgyoMSvNAWQ9LmqPcKpsKIlBCjzkQXtP3CM1FqrfBq3oom7RcgP+XfZcVx12OVIMKzGu9qnC5gooBUcZaGaf96YfVzPVnKv4r+SiG9KnKam5zbX2JUvM9QEiVb5IpG9agUvbcCIGJ9wXcW2cBZXu8XN6spaNVpJyAljoC12U=
+[ {
+  "nombre" : "Cien años de soledad",
+  "cod" : "1",
+  "cantidad" : 10,
+  "autor" : "Gabriel García Márquez",
+  "precio" : 60000.0
+}, {
+  "nombre" : "Orgullo y prejuicio",
+  "cod" : "2",
+  "cantidad" : 14,
+  "autor" : "Jane Austen",
+  "precio" : 50000.0
+}, {
+  "nombre" : "Dracula",
+  "cod" : "3",
+  "cantidad" : 9,
+  "autor" : "Bram Stoker",
+  "precio" : 55000.0
+}, {
+  "nombre" : "1984",
+  "cod" : "4",
+  "cantidad" : 10,
+  "autor" : "George Orwell",
+  "precio" : 45000.0
+}, {
+  "nombre" : "IT",
+  "cod" : "5",
+  "cantidad" : 13,
+  "autor" : "Stephen King",
+  "precio" : 60000.0
+}, {
+  "nombre" : "Frankenstein",
+  "cod" : "6",
+  "cantidad" : 8,
+  "autor" : "Mary Shelley",
+  "precio" : 50000.0
+} ]
