@@ -49,6 +49,7 @@ public class libreriaForm extends javax.swing.JFrame {
     }
 
     public void InitLibreria(int id, boolean adminSection) {
+        btnMenuAdmin.setVisible(adminSection);
         this.id = id;
         this.adminSection = adminSection;
         this.setSize(this.getPreferredSize());
@@ -198,6 +199,7 @@ public class libreriaForm extends javax.swing.JFrame {
         jCheckBox7 = new javax.swing.JCheckBox();
         imagen6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        btnMenuAdmin = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         btnTotal = new javax.swing.JButton();
         btnPagar = new javax.swing.JButton();
@@ -318,11 +320,11 @@ public class libreriaForm extends javax.swing.JFrame {
                 .addGroup(jLabelimagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jLabelimagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLabelimagenLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -549,7 +551,7 @@ public class libreriaForm extends javax.swing.JFrame {
                     .addGroup(jLabelimagen4Layout.createSequentialGroup()
                         .addGap(68, 68, 68)
                         .addComponent(jCheckBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLabelimagen4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(imagen3, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -712,6 +714,16 @@ public class libreriaForm extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Items Disponibles");
 
+        btnMenuAdmin.setBackground(new java.awt.Color(102, 102, 102));
+        btnMenuAdmin.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        btnMenuAdmin.setText("Menu Administrador");
+        btnMenuAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        btnMenuAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuAdminActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -729,15 +741,20 @@ public class libreriaForm extends javax.swing.JFrame {
                             .addComponent(jLabelimagen2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabelimagen5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabelimagen6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(68, 68, 68))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addGap(74, 74, 74))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(30, 30, 30)
+                        .addComponent(btnMenuAdmin)
+                        .addGap(84, 84, 84))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMenuAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelimagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1130,12 +1147,6 @@ public class libreriaForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void BtnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExitActionPerformed
-        if (adminSection) {
-            dispose();
-            ListaFacturasForm ListaFacturas = new ListaFacturasForm();
-            ListaFacturas.InitListaFacturas();
-            return;
-        }
         dispose();
         InventarioTemporalCRUD InventarioTemporalCRUD = new InventarioTemporalCRUD();
         InventarioTemporalCRUD.ActualizarInventarioTemporal();
@@ -1148,6 +1159,18 @@ public class libreriaForm extends javax.swing.JFrame {
         InventarioTemporalCRUD.ActualizarInventarioTemporal();
         reset();
     }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnMenuAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuAdminActionPerformed
+        // TODO add your handling code here:
+       if (adminSection) {
+           dispose();
+           MenuAdministradorForm MenuAdministrador = new MenuAdministradorForm();
+           MenuAdministrador.InitMenuAdministrador(id);
+       }
+       else {
+              JOptionPane.showMessageDialog(this, "No tienes permisos para acceder a esta sección", "Error", JOptionPane.ERROR_MESSAGE);
+       }
+    }//GEN-LAST:event_btnMenuAdminActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1186,6 +1209,7 @@ public class libreriaForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnExit;
+    private javax.swing.JButton btnMenuAdmin;
     private javax.swing.JButton btnPagar;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnTotal;

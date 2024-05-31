@@ -3,6 +3,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import javax.swing.*;
 import java.util.*;
 import java.io.*;
 public class UsuarioCRUD {
@@ -91,19 +92,66 @@ public class UsuarioCRUD {
         boolean igualdad;
         String[] documentosFiltrados = new String[usuarios.size()];
         char[] idFiltrado = id.toCharArray();
-        for (mdUsuario usuario : usuarios) {
-            char[] idUsuario = usuario.getId().toCharArray();
-            igualdad = true;
-            for (i = 0; i < index; i++) {
-                if (idFiltrado[i] != idUsuario[i]) {
-                    igualdad = false;
-                    break;
+        try {
+            for (mdUsuario usuario : usuarios) {
+                char[] idUsuario = usuario.getId().toCharArray();
+                igualdad = true;
+                for (i = 0; i < index; i++) {
+                    if (idFiltrado[i] != idUsuario[i]) {
+                        igualdad = false;
+                        break;
+                    }
+                }
+                if (igualdad) {
+                    documentosFiltrados[j++] = usuario.getId();
                 }
             }
-            if (igualdad) {
-                documentosFiltrados[j++] = usuario.getId();
+            return EliminarDocumentosDuplicados(documentosFiltrados, j);
+        }
+        catch (Exception ignored) {
+            return new String[0];
+        }
+    }
+
+    public boolean isAdmin(int id) {
+        for (mdUsuario usuario : usuarios) {
+            if (usuario.getId().equals(String.valueOf(id)) && usuario.getAdmin()) {
+                return true;
             }
         }
-        return EliminarDocumentosDuplicados(documentosFiltrados, j);
+        return false;
+    }
+
+    public String TomarInformacionUsuario(String id) {
+        for (mdUsuario usuario : usuarios) {
+            if (usuario.getId().equals(id)) {
+                return  "Nombre: " + usuario.getNombre() + "\n" +
+                        "Apellidos: " + usuario.getApellido() + "\n" +
+                        "Correo: " + usuario.getCorreo() + "\n" +
+                        "Telefono: " + usuario.getTelefono() + "\n" +
+                        "ID: " + usuario.getId() + "\n" +
+                        "Admin: " + usuario.getAdmin() + "\n";
+            }
+        }
+        return "";
+    }
+
+    public void EliminarUsuario(String documento) {
+        boolean eliminado = false;
+        for (mdUsuario usuario : usuarios) {
+            if (usuario.getId().equals(documento)) {
+                usuarios.remove(usuario);
+                eliminado = true;
+                break;
+            }
+        }
+        if (!eliminado) {
+            JOptionPane.showMessageDialog(null, "No se encontro el usuario con el documento: " + documento);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente.\nSe eliminó el usuario con el documento: " + documento +
+                    "\n\nPero no se eliminaron sus respectivas facturas. \n\nPor favor, elimine las facturas manualmente si desea hacerlo(O si las mismas aun existen). ");
+        }
+        guardarUsuariosEnJSON();
     }
 }

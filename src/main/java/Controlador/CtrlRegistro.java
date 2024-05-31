@@ -23,12 +23,7 @@ public class CtrlRegistro {
     }
     
     public static boolean validarId(String id) {
-        boolean vAux = id.matches("\\d{5,14}");
-        if (!vAux) {
-            JOptionPane.showMessageDialog(null, "Ingrese una identificacion correcta, entre 5 y 14 digitos. ");
-            return false;
-        }
-        return vAux;
+        return CtrlInicio.validarId(id);
     }
     
     private static boolean validarContrasena(String contrasena) {
@@ -81,6 +76,16 @@ public class CtrlRegistro {
             JOptionPane.showMessageDialog(null, "Ingrese un telefono correcto (Sin prefijo (+57) y sin espacios).");
         }
         return vAux;
+    }
+
+    public static String TomarInformacionUsuario(String id) {
+        UsuarioCRUD usuarioCRUD = new UsuarioCRUD();
+        return usuarioCRUD.TomarInformacionUsuario(id);
+    }
+
+    public static void EliminarUsuario(String documento) {
+        UsuarioCRUD usuarioCRUD = new UsuarioCRUD();
+        usuarioCRUD.EliminarUsuario(documento);
     }
 
 

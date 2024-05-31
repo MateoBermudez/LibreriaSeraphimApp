@@ -340,7 +340,7 @@ public class InicioUsuarioForm extends javax.swing.JFrame {
                 id = Integer.parseInt(idField.getText());
                 dispose();
                 libreriaForm libreria = new libreriaForm();
-                libreria.InitLibreria(id, false);
+                libreria.InitLibreria(id, controladorInicioUsuario.isAdmin(id));
             }
         }
         HabilitarCampos();

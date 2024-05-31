@@ -27,16 +27,18 @@ public class ListaFacturasForm extends javax.swing.JFrame {
     /**
      * Creates new form ListaFacturasForm
      */
+
+    int id;
+
     public ListaFacturasForm() {
         initComponents();
         setTime();
         setDocumentos();
-        //Mover a la inicializacion desde otra clase, no dejar aca, no funciona si se ejecuta desde el main
-        InitListaFacturas();
     }
     
-    public void InitListaFacturas() {
-        this.setSize(1000, 800);
+    public void InitListaFacturas(int id) {
+        this.id = id;
+        this.setSize(1000, 900);
         this.setMaximumSize(this.getSize());
         this.setMinimumSize(this.getSize());
         this.setPreferredSize(this.getSize());
@@ -74,11 +76,19 @@ public class ListaFacturasForm extends javax.swing.JFrame {
                     // Aquí puedes manejar el evento de doble clic.
                     try {
                         Object item = model.getElementAt(index);
+                        String txtFin = "";
                         String txt = CtrlFacturaVentas.leerFacturaporID(item.toString());
+                        String infoUsuario = CtrlRegistro.TomarInformacionUsuario(item.toString());
+                        if (!infoUsuario.isEmpty()) {
+                            txtFin = "Información del usuario: \n" + infoUsuario + "\n\n" + txt;
+                        }
+                        else {
+                            txtFin = "Información del usuario: \nEl usuario ha sido eliminado." + "\n\n" + txt;
+                        }
                         if (txt.isEmpty()) {
-                            AreaFacturas.setText("El usuario no ha comprado nada.");
+                            AreaFacturas.setText("Información del usuario: \n" + infoUsuario + "\n\nEl usuario no ha comprado nada.");
                         } else {
-                            AreaFacturas.setText(txt);
+                            AreaFacturas.setText(txtFin);
                         }
                         //Inicia el scroll desde el inicio
                         AreaFacturas.setCaretPosition(0);
@@ -90,6 +100,7 @@ public class ListaFacturasForm extends javax.swing.JFrame {
 
     private void setDocumentos(String[] documentos) {
         AreaFacturas.setText("");
+        String txtFin = "";
         DefaultListModel<String> model = new DefaultListModel<>();
         int i = 0;
         for (String documento : documentos) {
@@ -98,10 +109,17 @@ public class ListaFacturasForm extends javax.swing.JFrame {
         ListaDocumentos.setModel(model);
         if (documentos.length == 1) {
             String txt = CtrlFacturaVentas.leerFacturaporID(documentos[0]);
+            String infoUsuario = CtrlRegistro.TomarInformacionUsuario(documentos[0]);
+            if (!infoUsuario.isEmpty()) {
+                txtFin = "Información del usuario: \n" + infoUsuario + "\n\n" + txt;
+            }
+            else {
+                txtFin = "Información del usuario: \nEl usuario ha sido eliminado." + "\n\n" + txt;
+            }
             if (txt.isEmpty()) {
-                AreaFacturas.setText("El usuario no ha comprado nada.");
+                AreaFacturas.setText("Información del usuario: \n" + infoUsuario + "\n\nEl usuario no ha comprado nada.");
             } else {
-                AreaFacturas.setText(txt);
+                AreaFacturas.setText(txtFin);
             }
             //Inicia el scroll desde el inicio
             AreaFacturas.setCaretPosition(0);
@@ -138,6 +156,10 @@ public class ListaFacturasForm extends javax.swing.JFrame {
         btnBuscarDocumento = new javax.swing.JButton();
         documentoField = new javax.swing.JTextField();
         btnRefrescar = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
+        lblEliminarUser = new javax.swing.JLabel();
+        btnEliminarUsuario = new javax.swing.JButton();
+        eliminarUsuarioField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -242,8 +264,8 @@ public class ListaFacturasForm extends javax.swing.JFrame {
         });
         getContentPane().add(btnInsertarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 710, -1, 30));
 
-        lblIDañadirFactura.setText("ID del usuario a añadir factura: ");
-        getContentPane().add(lblIDañadirFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 680, -1, -1));
+        lblIDañadirFactura.setText("ID del usuario a añadir factura: (Si no existe, se agregará)");
+        getContentPane().add(lblIDañadirFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 680, 400, -1));
 
         IDAnadirFacturaField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -274,6 +296,32 @@ public class ListaFacturasForm extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnRefrescar, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 60, -1, -1));
+
+        btnVolver.setText("Volver al Menu");
+        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVolverMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+
+        lblEliminarUser.setText("ID de usuario a eliminar: ");
+        getContentPane().add(lblEliminarUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 760, 140, 30));
+
+        btnEliminarUsuario.setText("Eliminar Usuario");
+        btnEliminarUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEliminarUsuarioMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btnEliminarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 760, 120, 30));
+
+        eliminarUsuarioField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                eliminarUsuarioFieldKeyReleased(evt);
+            }
+        });
+        getContentPane().add(eliminarUsuarioField, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 760, 140, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -358,14 +406,25 @@ public class ListaFacturasForm extends javax.swing.JFrame {
 
     private void buscarFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscarFieldKeyReleased
         // TODO add your handling code here:
-        String codigo = buscarField.getText();
+        FiltrarCodigo(buscarField);
+    }//GEN-LAST:event_buscarFieldKeyReleased
+
+    private void FiltrarCodigo(JTextField Field) {
+        String codigo = Field.getText();
         String txt = CtrlFacturaVentas.leerFacturaporCodigo(codigo);
+        String infoUsuario = CtrlRegistro.TomarInformacionUsuario(TomarID(txt));
+        if (infoUsuario.isEmpty()) {
+            infoUsuario = "El usuario ha sido eliminado del sistema.";
+        }
+        else {
+            infoUsuario = "Información del usuario: \n" + infoUsuario;
+        }
         if (txt.isEmpty()) {
             AreaFacturas.setText("No se encontró la factura");
         } else {
-            AreaFacturas.setText(txt);
+            AreaFacturas.setText(infoUsuario + "\n\n" + txt);
         }
-    }//GEN-LAST:event_buscarFieldKeyReleased
+    }
 
 
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
@@ -381,14 +440,19 @@ public class ListaFacturasForm extends javax.swing.JFrame {
 
     private void codigoFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codigoFieldKeyReleased
         // TODO add your handling code here:
-        String codigo = codigoField.getText();
-        String txt = CtrlFacturaVentas.leerFacturaporCodigo(codigo);
-        if (txt.isEmpty()) {
-            AreaFacturas.setText("No se encontró la factura");
-        } else {
-            AreaFacturas.setText(txt);
-        }
+        FiltrarCodigo(codigoField);
     }//GEN-LAST:event_codigoFieldKeyReleased
+
+    private String TomarID(String txt) {
+        String[] lines = txt.split("\n");
+        for (String line : lines) {
+            if (line.contains("ID:")) {
+                return line.split(" ")[1];
+            }
+        }
+        return "";
+    }
+
 
     private void IDAnadirFacturaFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IDAnadirFacturaFieldKeyReleased
         // TODO add your handling code here:
@@ -403,6 +467,39 @@ public class ListaFacturasForm extends javax.swing.JFrame {
         LimpiarCampos();
         setDocumentos();
     }//GEN-LAST:event_btnRefrescarMouseClicked
+
+    private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        MenuAdministradorForm menuAdmin = new MenuAdministradorForm();
+        menuAdmin.InitMenuAdministrador(this.id);
+    }//GEN-LAST:event_btnVolverMouseClicked
+
+    private void eliminarUsuarioFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eliminarUsuarioFieldKeyReleased
+        // TODO add your handling code here:
+        String documento = eliminarUsuarioField.getText();
+        String[] docsFiltrados;
+        docsFiltrados = CtrlRegistro.FiltrarUsuario(documento, documento.length());
+        setDocumentos(docsFiltrados);
+    }//GEN-LAST:event_eliminarUsuarioFieldKeyReleased
+
+    private void btnEliminarUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarUsuarioMouseClicked
+        // TODO add your handling code here:
+        String documento = eliminarUsuarioField.getText();
+        if (documento.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese un documento");
+            return;
+        }
+        int res = JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar el usuario?", "Eliminar Usuario", JOptionPane.YES_NO_OPTION);
+        if (res == JOptionPane.YES_OPTION) {
+            CtrlRegistro.EliminarUsuario(documento);
+            LimpiarCampos();
+            eliminarUsuarioField.setText("");
+            setDocumentos();
+        } else {
+            JOptionPane.showMessageDialog(null, "Operación cancelada");
+        }
+    }//GEN-LAST:event_btnEliminarUsuarioMouseClicked
 
     /**
      * @param args the command line arguments
@@ -471,11 +568,14 @@ public class ListaFacturasForm extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnBuscarDocumento;
     private javax.swing.JButton btnEliminarFactura;
+    private javax.swing.JButton btnEliminarUsuario;
     private javax.swing.JButton btnInsertarFactura;
     private javax.swing.JButton btnRefrescar;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JTextField buscarField;
     private javax.swing.JTextField codigoField;
     private javax.swing.JTextField documentoField;
+    private javax.swing.JTextField eliminarUsuarioField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -484,6 +584,7 @@ public class ListaFacturasForm extends javax.swing.JFrame {
     private javax.swing.JLabel jTxtime;
     private javax.swing.JLabel lblBuscar;
     private javax.swing.JLabel lblBuscarUsuario;
+    private javax.swing.JLabel lblEliminarUser;
     private javax.swing.JLabel lblIDañadirFactura;
     // End of variables declaration//GEN-END:variables
 }

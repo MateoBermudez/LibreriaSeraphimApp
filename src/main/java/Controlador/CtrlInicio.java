@@ -18,9 +18,9 @@ public class CtrlInicio {
     }
     
     public static boolean validarId(String id) {
-        boolean vAux = id.matches("\\d{5,14}");
+        boolean vAux = id.matches("\\d{8,10}");
         if (!vAux) {
-            JOptionPane.showMessageDialog(null, "Ingrese una identificacion correcta, entre 5 y 14 digitos. ");
+            JOptionPane.showMessageDialog(null, "Ingrese una identificacion correcta, entre 8 y 10 digitos. ");
             return false;
         }
         return vAux;
@@ -39,4 +39,9 @@ public class CtrlInicio {
         return usuarioCRUD.validarExistenciaUsuario(id, contrasena);
     }
 
+
+    public boolean isAdmin(int id) {
+        UsuarioCRUD usuarioCRUD = new UsuarioCRUD();
+        return usuarioCRUD.isAdmin(id);
+    }
 }
