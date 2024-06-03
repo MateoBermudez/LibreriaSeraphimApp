@@ -219,8 +219,8 @@ public class libreriaForm extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(235, 235, 235));
 
-        jLabel1.setFont(new java.awt.Font("Poppins", 1, 36)); // NOI18N
-        jLabel1.setText("Librería");
+        jLabel1.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 44)); // NOI18N
+        jLabel1.setText("LIBRERIA");
 
         jTxtime.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         jTxtime.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -710,14 +710,15 @@ public class libreriaForm extends javax.swing.JFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        jLabel2.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 32)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Items Disponibles");
 
-        btnMenuAdmin.setBackground(new java.awt.Color(102, 102, 102));
+        btnMenuAdmin.setBackground(new java.awt.Color(51, 51, 51));
         btnMenuAdmin.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
-        btnMenuAdmin.setText("Menu Administrador");
-        btnMenuAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        btnMenuAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/admin32.png"))); // NOI18N
+        btnMenuAdmin.setBorder(null);
+        btnMenuAdmin.setBorderPainted(false);
         btnMenuAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenuAdminActionPerformed(evt);
@@ -744,9 +745,9 @@ public class libreriaForm extends javax.swing.JFrame {
                         .addGap(74, 74, 74))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(30, 30, 30)
-                        .addComponent(btnMenuAdmin)
-                        .addGap(84, 84, 84))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnMenuAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(96, 96, 96))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -774,7 +775,7 @@ public class libreriaForm extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 230, 230)));
 
         btnTotal.setBackground(new java.awt.Color(204, 255, 204));
-        btnTotal.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        btnTotal.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
         btnTotal.setText("TOTAL");
         btnTotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         btnTotal.addActionListener(new java.awt.event.ActionListener() {
@@ -784,7 +785,7 @@ public class libreriaForm extends javax.swing.JFrame {
         });
 
         btnPagar.setBackground(new java.awt.Color(102, 204, 255));
-        btnPagar.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        btnPagar.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
         btnPagar.setText("PAGAR");
         btnPagar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         btnPagar.addActionListener(new java.awt.event.ActionListener() {
@@ -794,7 +795,7 @@ public class libreriaForm extends javax.swing.JFrame {
         });
 
         BtnExit.setBackground(new java.awt.Color(255, 153, 153));
-        BtnExit.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        BtnExit.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
         BtnExit.setText("SALIDA");
         BtnExit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         BtnExit.addActionListener(new java.awt.event.ActionListener() {
@@ -804,7 +805,7 @@ public class libreriaForm extends javax.swing.JFrame {
         });
 
         btnReset.setBackground(new java.awt.Color(153, 153, 255));
-        btnReset.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        btnReset.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
         btnReset.setText("VACIAR");
         btnReset.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         btnReset.addActionListener(new java.awt.event.ActionListener() {
@@ -858,13 +859,15 @@ public class libreriaForm extends javax.swing.JFrame {
         jTextFieldTotal.setFont(new java.awt.Font("Poppins SemiBold", 0, 14)); // NOI18N
         jTextFieldTotal.setText("0.00");
 
-        jLabel8.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("SUBTOTAL");
 
-        jLabel9.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
         jLabel9.setText("IVA");
 
-        jLabel10.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel10.setText("TOTAL");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
