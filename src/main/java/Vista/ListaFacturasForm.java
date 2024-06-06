@@ -27,7 +27,7 @@ public class ListaFacturasForm extends javax.swing.JFrame {
     /**
      * Creates new form ListaFacturasForm
      */
-
+    int xMouse, yMouse;
     int id;
 
     public ListaFacturasForm() {
@@ -38,7 +38,7 @@ public class ListaFacturasForm extends javax.swing.JFrame {
     
     public void InitListaFacturas(int id) {
         this.id = id;
-        this.setSize(1000, 900);
+        this.setSize(929, 786);
         this.setMaximumSize(this.getSize());
         this.setMinimumSize(this.getSize());
         this.setPreferredSize(this.getSize());
@@ -135,79 +135,121 @@ public class ListaFacturasForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        headerfacturas = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTxtime = new javax.swing.JLabel();
-        jTxtDate = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        AreaFacturas = new javax.swing.JTextArea();
+        inventory = new javax.swing.JLabel();
+        Xexit = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        btnVolver = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         ListaDocumentos = new javax.swing.JList<>();
-        btnEliminarFactura = new javax.swing.JButton();
-        Codigo = new javax.swing.JLabel();
-        codigoField = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
-        buscarField = new javax.swing.JTextField();
-        lblBuscar = new javax.swing.JLabel();
-        lblBuscarUsuario = new javax.swing.JLabel();
-        btnInsertarFactura = new javax.swing.JButton();
         lblIDañadirFactura = new javax.swing.JLabel();
         IDAnadirFacturaField = new javax.swing.JTextField();
-        btnBuscarDocumento = new javax.swing.JButton();
+        btnInsertarFactura = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
         documentoField = new javax.swing.JTextField();
-        btnRefrescar = new javax.swing.JButton();
-        btnVolver = new javax.swing.JButton();
+        btnBuscarDocumento = new javax.swing.JButton();
+        lblBuscarUsuario = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         lblEliminarUser = new javax.swing.JLabel();
-        btnEliminarUsuario = new javax.swing.JButton();
         eliminarUsuarioField = new javax.swing.JTextField();
+        btnEliminarUsuario = new javax.swing.JButton();
+        codigoField = new javax.swing.JTextField();
+        Codigo = new javax.swing.JLabel();
+        btnEliminarFactura = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        AreaFacturas = new javax.swing.JTextArea();
+        btnRefrescar = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        btnBuscar = new javax.swing.JButton();
+        lblBuscar = new javax.swing.JLabel();
+        buscarField = new javax.swing.JTextField();
+        jTxtDate = new javax.swing.JLabel();
+        jTxtime = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(235, 235, 235));
+        headerfacturas.setBackground(new java.awt.Color(51, 51, 51));
+        headerfacturas.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                headerfacturasMouseDragged(evt);
+            }
+        });
+        headerfacturas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                headerfacturasMousePressed(evt);
+            }
+        });
 
-        jLabel1.setFont(new java.awt.Font("Poppins", 1, 36)); // NOI18N
-        jLabel1.setText("Librería");
+        jLabel1.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("FACTURAS");
 
-        jTxtime.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
-        jTxtime.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        inventory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/factura32.png"))); // NOI18N
 
-        jTxtDate.setFont(new java.awt.Font("Poppins", 1, 17)); // NOI18N
-        jTxtDate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Xexit.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 16)); // NOI18N
+        Xexit.setForeground(new java.awt.Color(255, 255, 255));
+        Xexit.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Xexit.setText("Cerrar");
+        Xexit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Xexit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                XexitMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                XexitMousePressed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 443, Short.MAX_VALUE)
-                .addComponent(jTxtime, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout headerfacturasLayout = new javax.swing.GroupLayout(headerfacturas);
+        headerfacturas.setLayout(headerfacturasLayout);
+        headerfacturasLayout.setHorizontalGroup(
+            headerfacturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerfacturasLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(Xexit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 598, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTxtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addComponent(inventory)
+                .addGap(207, 207, 207))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jTxtDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTxtime, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+        headerfacturasLayout.setVerticalGroup(
+            headerfacturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerfacturasLayout.createSequentialGroup()
+                .addGroup(headerfacturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(headerfacturasLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(headerfacturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inventory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(headerfacturasLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(Xexit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(headerfacturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 80));
 
-        AreaFacturas.setEditable(false);
-        AreaFacturas.setColumns(20);
-        AreaFacturas.setRows(5);
-        jScrollPane1.setViewportView(AreaFacturas);
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 340, 510));
+        btnVolver.setBackground(new java.awt.Color(51, 51, 51));
+        btnVolver.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
+        btnVolver.setText("VOLVER AL MENÚ\n");
+        btnVolver.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVolverMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(765, 330, 120, 40));
 
+        ListaDocumentos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(76, 76, 76), 1, true));
         ListaDocumentos.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = {};
             public int getSize() { return strings.length; }
@@ -215,113 +257,197 @@ public class ListaFacturasForm extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(ListaDocumentos);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 300, 510));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 300, 510));
 
-        btnEliminarFactura.setText("Eliminar Factura");
-        btnEliminarFactura.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnEliminarFacturaMouseClicked(evt);
-            }
-        });
-        getContentPane().add(btnEliminarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 693, -1, 30));
+        lblIDañadirFactura.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
+        lblIDañadirFactura.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblIDañadirFactura.setText("ID del usuario a añadir factura: ");
+        jPanel1.add(lblIDañadirFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 620, 300, -1));
 
-        Codigo.setText("Codigo: ");
-        getContentPane().add(Codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 700, -1, -1));
-
-        codigoField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                codigoFieldKeyReleased(evt);
-            }
-        });
-        getContentPane().add(codigoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(644, 692, 140, 30));
-
-        btnBuscar.setText("Buscar");
-        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnBuscarMouseClicked(evt);
-            }
-        });
-        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 120, -1, -1));
-
-        buscarField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                buscarFieldKeyReleased(evt);
-            }
-        });
-        getContentPane().add(buscarField, new org.netbeans.lib.awtextra.AbsoluteConstraints(681, 120, 150, -1));
-
-        lblBuscar.setText("Buscar Factura por Codigo: ");
-        getContentPane().add(lblBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 90, -1, -1));
-
-        lblBuscarUsuario.setText("Buscar usuario por documento: ");
-        getContentPane().add(lblBuscarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, -1, -1));
-
-        btnInsertarFactura.setText("Agregar Factura");
-        btnInsertarFactura.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnInsertarFacturaMouseClicked(evt);
-            }
-        });
-        getContentPane().add(btnInsertarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 710, -1, 30));
-
-        lblIDañadirFactura.setText("ID del usuario a añadir factura: (Si no existe, se agregará)");
-        getContentPane().add(lblIDañadirFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 680, 400, -1));
-
+        IDAnadirFacturaField.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
+        IDAnadirFacturaField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
         IDAnadirFacturaField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 IDAnadirFacturaFieldKeyReleased(evt);
             }
         });
-        getContentPane().add(IDAnadirFacturaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 710, 140, 30));
+        jPanel1.add(IDAnadirFacturaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 640, 140, 30));
 
-        btnBuscarDocumento.setText("Buscar");
-        btnBuscarDocumento.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnInsertarFactura.setBackground(new java.awt.Color(51, 51, 51));
+        btnInsertarFactura.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 20)); // NOI18N
+        btnInsertarFactura.setForeground(new java.awt.Color(255, 255, 255));
+        btnInsertarFactura.setText("+");
+        btnInsertarFactura.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        btnInsertarFactura.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnBuscarDocumentoMouseClicked(evt);
+                btnInsertarFacturaMouseClicked(evt);
             }
         });
-        getContentPane().add(btnBuscarDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, -1, -1));
+        btnInsertarFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertarFacturaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnInsertarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 640, 30, 30));
 
+        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        documentoField.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
+        documentoField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 76, 76)));
+        documentoField.setPreferredSize(new java.awt.Dimension(64, 22));
         documentoField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 documentoFieldKeyReleased(evt);
             }
         });
-        getContentPane().add(documentoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 160, -1));
+        jPanel3.add(documentoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 190, 20));
 
-        btnRefrescar.setText("Refrescar");
-        btnRefrescar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnBuscarDocumento.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
+        btnBuscarDocumento.setText("BUSCAR");
+        btnBuscarDocumento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarDocumento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRefrescarMouseClicked(evt);
+                btnBuscarDocumentoMouseClicked(evt);
             }
         });
-        getContentPane().add(btnRefrescar, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 60, -1, -1));
-
-        btnVolver.setText("Volver al Menu");
-        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnVolverMouseClicked(evt);
+        btnBuscarDocumento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarDocumentoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        jPanel3.add(btnBuscarDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, 20));
 
+        lblBuscarUsuario.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
+        lblBuscarUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        lblBuscarUsuario.setText("Buscar usuario por documento: ");
+        jPanel3.add(lblBuscarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 300, 60));
+
+        jLabel3.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(72, 72, 72));
+        jLabel3.setText("(Si no existe, se agregará)");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 670, 160, 20));
+
+        lblEliminarUser.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
         lblEliminarUser.setText("ID de usuario a eliminar: ");
-        getContentPane().add(lblEliminarUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 760, 140, 30));
+        jPanel1.add(lblEliminarUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 620, 140, 20));
 
-        btnEliminarUsuario.setText("Eliminar Usuario");
-        btnEliminarUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnEliminarUsuarioMouseClicked(evt);
-            }
-        });
-        getContentPane().add(btnEliminarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 760, 120, 30));
-
+        eliminarUsuarioField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(75, 75, 75), 1, true));
         eliminarUsuarioField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 eliminarUsuarioFieldKeyReleased(evt);
             }
         });
-        getContentPane().add(eliminarUsuarioField, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 760, 140, 30));
+        jPanel1.add(eliminarUsuarioField, new org.netbeans.lib.awtextra.AbsoluteConstraints(545, 640, 135, 30));
+
+        btnEliminarUsuario.setBackground(new java.awt.Color(51, 51, 51));
+        btnEliminarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/quitar-usuario.png"))); // NOI18N
+        btnEliminarUsuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        btnEliminarUsuario.setPreferredSize(new java.awt.Dimension(30, 30));
+        btnEliminarUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEliminarUsuarioMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnEliminarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 640, 30, 30));
+
+        codigoField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(75, 75, 75), 1, true));
+        codigoField.setPreferredSize(new java.awt.Dimension(64, 18));
+        codigoField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                codigoFieldKeyReleased(evt);
+            }
+        });
+        jPanel1.add(codigoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 640, 135, 30));
+
+        Codigo.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
+        Codigo.setText("Codigo: ");
+        jPanel1.add(Codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 620, -1, -1));
+
+        btnEliminarFactura.setBackground(new java.awt.Color(51, 51, 51));
+        btnEliminarFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminarfact.png"))); // NOI18N
+        btnEliminarFactura.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        btnEliminarFactura.setPreferredSize(new java.awt.Dimension(30, 30));
+        btnEliminarFactura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEliminarFacturaMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnEliminarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 640, 30, 30));
+
+        AreaFacturas.setEditable(false);
+        AreaFacturas.setBackground(new java.awt.Color(255, 255, 255));
+        AreaFacturas.setColumns(20);
+        AreaFacturas.setRows(5);
+        AreaFacturas.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(76, 76, 76), 1, true));
+        jScrollPane1.setViewportView(AreaFacturas);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 340, 510));
+
+        btnRefrescar.setBackground(new java.awt.Color(51, 51, 51));
+        btnRefrescar.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 16)); // NOI18N
+        btnRefrescar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRefrescar.setText("REFRESCAR");
+        btnRefrescar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        btnRefrescar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRefrescarMouseClicked(evt);
+            }
+        });
+        btnRefrescar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefrescarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnRefrescar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 280, 110, 40));
+
+        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnBuscar.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
+        btnBuscar.setText("BUSCAR");
+        btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscarMouseClicked(evt);
+            }
+        });
+        jPanel4.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, 20));
+
+        lblBuscar.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
+        lblBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        lblBuscar.setText("Buscar Factura por Codigo: ");
+        jPanel4.add(lblBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        buscarField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(76, 76, 76), 1, true));
+        buscarField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarFieldActionPerformed(evt);
+            }
+        });
+        buscarField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                buscarFieldKeyReleased(evt);
+            }
+        });
+        jPanel4.add(buscarField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 220, 20));
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 340, 60));
+
+        jTxtDate.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
+        jTxtDate.setForeground(new java.awt.Color(51, 51, 51));
+        jTxtDate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(jTxtDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 380, 180, 41));
+
+        jTxtime.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
+        jTxtime.setForeground(new java.awt.Color(51, 51, 51));
+        jTxtime.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(jTxtime, new org.netbeans.lib.awtextra.AbsoluteConstraints(765, 430, 123, 39));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 930, 760));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -501,6 +627,42 @@ public class ListaFacturasForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEliminarUsuarioMouseClicked
 
+    private void btnBuscarDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarDocumentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarDocumentoActionPerformed
+
+    private void btnInsertarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarFacturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInsertarFacturaActionPerformed
+
+    private void buscarFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buscarFieldActionPerformed
+
+    private void btnRefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefrescarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRefrescarActionPerformed
+
+    private void XexitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_XexitMouseClicked
+        SeguridadArchivos.EncriptarArchivos();
+        System.exit(0);
+    }//GEN-LAST:event_XexitMouseClicked
+
+    private void XexitMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_XexitMousePressed
+
+    }//GEN-LAST:event_XexitMousePressed
+
+    private void headerfacturasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerfacturasMousePressed
+        xMouse =evt.getX();
+        yMouse =evt.getY();
+    }//GEN-LAST:event_headerfacturasMousePressed
+
+    private void headerfacturasMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerfacturasMouseDragged
+        int x= evt.getXOnScreen();
+        int y= evt.getYOnScreen();
+        this.setLocation(x - xMouse,y - yMouse);
+    }//GEN-LAST:event_headerfacturasMouseDragged
+
     /**
      * @param args the command line arguments
      */
@@ -565,6 +727,7 @@ public class ListaFacturasForm extends javax.swing.JFrame {
     private javax.swing.JLabel Codigo;
     private javax.swing.JTextField IDAnadirFacturaField;
     private javax.swing.JList<String> ListaDocumentos;
+    private javax.swing.JLabel Xexit;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnBuscarDocumento;
     private javax.swing.JButton btnEliminarFactura;
@@ -576,8 +739,13 @@ public class ListaFacturasForm extends javax.swing.JFrame {
     private javax.swing.JTextField codigoField;
     private javax.swing.JTextField documentoField;
     private javax.swing.JTextField eliminarUsuarioField;
+    private javax.swing.JPanel headerfacturas;
+    private javax.swing.JLabel inventory;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel jTxtDate;
