@@ -74,10 +74,8 @@ public class MenuAdministradorForm extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btnVolver = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
         btnFacturas = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
         btnInventario = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         headeradm = new javax.swing.JPanel();
@@ -183,15 +181,14 @@ public class MenuAdministradorForm extends javax.swing.JFrame {
         jPanel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/factura.png"))); // NOI18N
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 130, 150));
-
+        btnFacturas.setBackground(new java.awt.Color(51, 51, 51));
         btnFacturas.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 16)); // NOI18N
+        btnFacturas.setForeground(new java.awt.Color(255, 255, 255));
+        btnFacturas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/factura128.png"))); // NOI18N
         btnFacturas.setText("<html>\nFACTURAS<br>\nY USUARIOS\n</html>");
         btnFacturas.setBorder(null);
         btnFacturas.setBorderPainted(false);
-        btnFacturas.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnFacturas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnFacturas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnFacturas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -203,7 +200,7 @@ public class MenuAdministradorForm extends javax.swing.JFrame {
                 btnFacturasActionPerformed(evt);
             }
         });
-        jPanel3.add(btnFacturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 16, 130, 200));
+        jPanel3.add(btnFacturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 130, 210));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 150, 230));
 
@@ -213,16 +210,16 @@ public class MenuAdministradorForm extends javax.swing.JFrame {
         jPanel4.setPreferredSize(new java.awt.Dimension(150, 230));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/inventario-disponible.png"))); // NOI18N
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 130, 140));
-
+        btnInventario.setBackground(new java.awt.Color(51, 51, 51));
         btnInventario.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
+        btnInventario.setForeground(new java.awt.Color(255, 255, 255));
+        btnInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/inventario-disponible128.png"))); // NOI18N
         btnInventario.setText("INVENTARIO");
         btnInventario.setBorder(null);
         btnInventario.setBorderPainted(false);
         btnInventario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnInventario.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnInventario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnInventario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnInventario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnInventarioMouseClicked(evt);
@@ -376,8 +373,6 @@ public class MenuAdministradorForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
