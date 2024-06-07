@@ -9,6 +9,7 @@ import Controlador.SeguridadArchivos;
 import Controlador.CtrlLibreria;
 import Modelo.InventarioCRUD;
 import Modelo.InventarioTemporalCRUD;
+import Modelo.VentasCRUD;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -1068,7 +1069,6 @@ public class libreriaForm extends javax.swing.JFrame {
         if(qtyisZero(qty) && jCheckBox3.isSelected()){
             if (CtrlLibreria.CantidadLibros("2", qty)) {
                 CtrlLibreria.ActualizarInventarioTemporal("2", qty);
-
                 x++;
                 if (x == 1) {
                     Biblioteca();
@@ -1161,6 +1161,9 @@ public class libreriaForm extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Factura creada con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     InventarioCRUD InventarioCRUD = new InventarioCRUD();
                     InventarioCRUD.ActualizarInventario();
+                    VentasCRUD VentasCRUD = new VentasCRUD();
+                    //VentasCRUD.actualizarcantidad("Cien años de soledad", (Integer) J);
+
                 } catch (PrinterException ex){
                     Logger.getLogger(libreriaForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
