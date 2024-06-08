@@ -1,1 +1,44 @@
-YtXrOHO9OBXo9Bn+5Ai+YkZihEUwNn1chP3nx+CDLOQbxB+4ZsWtskVOs3erXDN+0aNfGhbV2AbFZXL0EDKNoB/kXRc0vhtzRFf9fNa6WaT7ioJTgNPILs0WAVSoy5OcyFufNgIB/EIOBBf3nmYc0S+XzwzMJ23FVpzx7bIaUBbIehgBiNcKyZ8Kl/nwdxtzTtRoYoXrSdLcLNuhn4tO7oQr83uD0DGeGF9iqNXxeOVPdB/Jk4eP5S7e75DtBRwpAr7sQKsTAXv8/MhSA9xqegIW+3EHnfvwXUBQxWXqcPRmYBlniVeQ7uix5+PJJXCV+zknNlhKbqx/PotDHlL2dJ5od62bCGTLOiNc9jTO84G/+xGLLoA5CNGDKw0MKbM8LmGTIF2P7TSzOj21nPfBe88pLiSwGg8Kn+AkJ7BMBQb2pYb9iopUqr64p24gVC+mrlVZnpr7aV4Z8eXQs/GlBfbRjKhEjBQiR7TZEP7uW5bEJtE5/2uOhuHgSgX9ZAp1TDmsXEPhK+xeRWqBlaCKkpTaRSprTH8TUHR+/a96jrPhM6MpUi+EcmmE+jdYTcuHYp8pKzFCKrOEhFxa8MRCwXv246VNygjM8dbdlBG4Urz+a3blyR3sV7vS5B9sSCQCDSIp8P1Vr5p+lBmrGNpyLoOXFPfTnJNxVJL0RlwgHKznV/Kt+/bJ6DC9zELJjKJ5O8Dh9i1270d0vUXeeWWoAC69OzPVtUdkWRlOvN0KITGBjmtzko2JjUtvLBNyyKyW7HImn8xhWfytqNO+zjLODIrOnRidna4GptrAQmZiV9rtDSbMk01CtDzy8/BSmFMCReHzt+Niez/6saQdMy9eArpVJKftvnxKfI0czP0B+HCP0o2V+s3avMOLImDb3BSYEA1kMBPKv+tyipb6tQFpWYMcaKKn4GvJ34XomUNMO7V5F02435dIEOAZIaANBgvbbzy5tmorddKxPK75po4+nPzomYh0gOKcRqrtx1gNRMXlLtdtHP+8bS6FtOPEx1hgPmLIhakvH3UljlY42DT7FXpYc6jDzAUf9MqKpE3fmsvwnSAmIBqhLbr0aJeGeJeuZ6yYCgzF0YO31TODlH+3g9Rf5aZOiCxwxEU9o00gmlUANUWHbiTlY5VLVJnXP0j7ilf3F0xkjDKepU0XaxO9PcMOfIqjFiq0YghjLJ4JYNrS2dD0YqUlXxcj7AmxT0miFroMS2hDR2qfYTE6ao1x08/tKhOL+w7fJpFyGbmgmytDQfURUJ9kCov8YRnIZZ9eqGeLLKAmODE1Q+XjfWbJJ87vY0/wlRZEvnOM4JDKB0PQ44o8oXouio0V5hQs+EycxxgWpWv20CipNLCqS5uqoEY/Moo78+Iq6+w/AQ2CIBo=
+[
+  {
+    "nombre": "Cien años de soledad",
+    "autor": "Gabriel García Márquez",
+    "precio": 60000.0,
+    "cantidad": 8,
+    "cod": "1"
+  },
+  {
+    "nombre": "Orgullo y prejuicio",
+    "autor": "Jane Austen",
+    "precio": 50000.0,
+    "cantidad": 11,
+    "cod": "2"
+  },
+  {
+    "nombre": "Dracula",
+    "autor": "Bram Stoker",
+    "precio": 55000.0,
+    "cantidad": 9,
+    "cod": "3"
+  },
+  {
+    "nombre": "1984",
+    "autor": "George Orwell",
+    "precio": 45000.0,
+    "cantidad": 9,
+    "cod": "4"
+  },
+  {
+    "nombre": "IT",
+    "autor": "Stephen King",
+    "precio": 60000.0,
+    "cantidad": 13,
+    "cod": "5"
+  },
+  {
+    "nombre": "Frankenstein",
+    "autor": "Mary Shelley",
+    "precio": 50000.0,
+    "cantidad": 6,
+    "cod": "6"
+  }
+]

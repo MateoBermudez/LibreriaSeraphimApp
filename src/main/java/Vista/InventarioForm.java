@@ -104,6 +104,7 @@ public class InventarioForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         Nombre = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        Estadisticas = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         Eliminar = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
@@ -261,6 +262,24 @@ public class InventarioForm extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 16)); // NOI18N
         jLabel1.setText("Filtrar por Nombre:");
         headerinventory.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 19, 110, 30));
+
+        Estadisticas.setBackground(new java.awt.Color(51, 51, 51));
+        Estadisticas.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
+        Estadisticas.setForeground(new java.awt.Color(255, 255, 255));
+        Estadisticas.setText("ESTADISTICAS");
+        Estadisticas.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        Estadisticas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Estadisticas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EstadisticasMouseClicked(evt);
+            }
+        });
+        Estadisticas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EstadisticasActionPerformed(evt);
+            }
+        });
+        headerinventory.add(Estadisticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 50, 120, 30));
 
         jPanel1.add(headerinventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(-219, 0, 860, 80));
 
@@ -515,6 +534,17 @@ public class InventarioForm extends javax.swing.JFrame {
         this.setLocation(x - xMouse,y - yMouse);
     }//GEN-LAST:event_headerinventoryMouseDragged
 
+    private void EstadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstadisticasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EstadisticasActionPerformed
+
+    private void EstadisticasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EstadisticasMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        EstadisticasForm estadisticas = new EstadisticasForm();
+        estadisticas.InitEstadisticas(this.id);
+    }//GEN-LAST:event_EstadisticasMouseClicked
+
 
     
     private void NombreActionPerformed(java.awt.event.ActionEvent evt) {                                       
@@ -664,6 +694,7 @@ public class InventarioForm extends javax.swing.JFrame {
     private javax.swing.JTextField Codigo;
     private javax.swing.JTextField CodigoAg;
     private javax.swing.JButton Eliminar;
+    private javax.swing.JButton Estadisticas;
     private javax.swing.JButton Guardar;
     private javax.swing.JButton Modificar;
     private javax.swing.JTextField Nombre;
