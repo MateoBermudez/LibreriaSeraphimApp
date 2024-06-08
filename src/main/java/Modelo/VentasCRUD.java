@@ -63,5 +63,9 @@ public class VentasCRUD{
         ventasCRUD.agregarVenta(new mdVentas(0, "Frankenstein", 50000, 0));
     }*/
 
+    public List<mdVentas> getVentas() {
+        return ventas;
+    }
+
 
 }
