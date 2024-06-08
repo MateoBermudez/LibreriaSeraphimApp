@@ -1155,15 +1155,19 @@ public class libreriaForm extends javax.swing.JFrame {
             if (habilitarPagar) {
                 habilitarPagar = false;
                 try{
-                    jTextArea.print();
                     CtrlFacturaVentas CtrlFacturaVentas = new CtrlFacturaVentas();
                     CtrlFacturaVentas.CrearFactura(this.id, this.jTxtDate.getText(), this.jTextArea.getText());
                     JOptionPane.showMessageDialog(this, "Factura creada con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     InventarioCRUD InventarioCRUD = new InventarioCRUD();
                     InventarioCRUD.ActualizarInventario();
                     VentasCRUD VentasCRUD = new VentasCRUD();
-                    //VentasCRUD.actualizarcantidad("Cien años de soledad", (Integer) J);
-
+                    VentasCRUD.actualizarcantidad("Cien años de soledad", (Integer) jSpinner1.getValue());
+                    VentasCRUD.actualizarcantidad("Orgullo y prejuicio", (Integer) jSpinner3.getValue());
+                    VentasCRUD.actualizarcantidad("Dracula", (Integer) jSpinner5.getValue());
+                    VentasCRUD.actualizarcantidad("1984", (Integer) jSpinner6.getValue());
+                    VentasCRUD.actualizarcantidad("IT", (Integer) jSpinner4.getValue());
+                    VentasCRUD.actualizarcantidad("Frankenstein", (Integer) jSpinner7.getValue());
+                    jTextArea.print();
                 } catch (PrinterException ex){
                     Logger.getLogger(libreriaForm.class.getName()).log(Level.SEVERE, null, ex);
                 }

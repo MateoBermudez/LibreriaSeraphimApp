@@ -3,14 +3,14 @@
     "nombre": "Cien años de soledad",
     "autor": "Gabriel García Márquez",
     "precio": 60000.0,
-    "cantidad": 8,
+    "cantidad": 4,
     "cod": "1"
   },
   {
     "nombre": "Orgullo y prejuicio",
     "autor": "Jane Austen",
     "precio": 50000.0,
-    "cantidad": 11,
+    "cantidad": 10,
     "cod": "2"
   },
   {
@@ -24,14 +24,14 @@
     "nombre": "1984",
     "autor": "George Orwell",
     "precio": 45000.0,
-    "cantidad": 9,
+    "cantidad": 8,
     "cod": "4"
   },
   {
     "nombre": "IT",
     "autor": "Stephen King",
     "precio": 60000.0,
-    "cantidad": 13,
+    "cantidad": 11,
     "cod": "5"
   },
   {
