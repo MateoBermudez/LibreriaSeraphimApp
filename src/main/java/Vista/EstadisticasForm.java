@@ -31,7 +31,7 @@ public class EstadisticasForm extends javax.swing.JFrame {
     /**
      * Creates new form EstadisticasForm
      */
-
+    int xMouse, yMouse;
     int id;
 
     public EstadisticasForm() {
@@ -42,7 +42,7 @@ public class EstadisticasForm extends javax.swing.JFrame {
 
     public void InitEstadisticas(int id) {
         this.id = id;
-        this.setSize(800, 641);
+        this.setSize(806, 641);
         this.setMaximumSize(this.getSize());
         this.setMinimumSize(this.getSize());
         this.setPreferredSize(this.getSize());
@@ -50,6 +50,13 @@ public class EstadisticasForm extends javax.swing.JFrame {
         this.setCloseOperation();
         this.getContentPane().setBackground(Color.WHITE);
         this.setVisible(true);
+
+        // Obtén las dimensiones del contenedor principal
+        Dimension mainPanelSize = getContentPane().getSize();
+
+        // Establece las dimensiones del panel gráfico para que se ajuste al contenedor principal
+        Chart.setPreferredSize(new Dimension(mainPanelSize.width - 40, mainPanelSize.height - 40));
+        Chart.revalidate();
     }
 
     private void setCloseOperation() {
@@ -161,40 +168,98 @@ public class EstadisticasForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTxtime = new javax.swing.JLabel();
-        jTxtDate = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         btnVolver = new javax.swing.JButton();
-        Xexit = new javax.swing.JLabel();
         Chart = new javax.swing.JPanel();
         btnIngresos = new javax.swing.JButton();
         btnMasVendidos = new javax.swing.JButton();
         lblIngresos = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        Xexit = new javax.swing.JLabel();
+        jTxtime = new javax.swing.JLabel();
+        jTxtDate = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jTxtime.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
-        jTxtime.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        jTxtDate.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
-        jTxtDate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        jLabel1.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 44)); // NOI18N
-        jLabel1.setText("ESTADISTICAS");
+        setUndecorated(true);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnVolver.setBackground(new java.awt.Color(51, 51, 51));
         btnVolver.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
         btnVolver.setForeground(new java.awt.Color(255, 255, 255));
         btnVolver.setText("VOLVER AL MENÚ DE INVENTARIO");
         btnVolver.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnVolverMouseClicked(evt);
             }
         });
+        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(561, 547, 200, 40));
+
+        javax.swing.GroupLayout ChartLayout = new javax.swing.GroupLayout(Chart);
+        Chart.setLayout(ChartLayout);
+        ChartLayout.setHorizontalGroup(
+            ChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 767, Short.MAX_VALUE)
+        );
+        ChartLayout.setVerticalGroup(
+            ChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 410, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(Chart, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 410));
+
+        btnIngresos.setBackground(new java.awt.Color(51, 51, 51));
+        btnIngresos.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
+        btnIngresos.setForeground(new java.awt.Color(255, 255, 255));
+        btnIngresos.setText("INGRESOS");
+        btnIngresos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        btnIngresos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnIngresos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnIngresosMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btnIngresos, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 547, 105, 40));
+
+        btnMasVendidos.setBackground(new java.awt.Color(51, 51, 51));
+        btnMasVendidos.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
+        btnMasVendidos.setForeground(new java.awt.Color(255, 255, 255));
+        btnMasVendidos.setText("VENTA DE LIBROS");
+        btnMasVendidos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        btnMasVendidos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMasVendidos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMasVendidosMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btnMasVendidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 547, 105, 40));
+
+        lblIngresos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(lblIngresos, new org.netbeans.lib.awtextra.AbsoluteConstraints(292, 547, 263, 40));
+
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+        });
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 44)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("ESTADISTICAS");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 240, 45));
 
         Xexit.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 16)); // NOI18N
-        Xexit.setForeground(new java.awt.Color(0, 0, 0));
+        Xexit.setForeground(new java.awt.Color(255, 255, 255));
         Xexit.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         Xexit.setText("Cerrar");
         Xexit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -206,87 +271,22 @@ public class EstadisticasForm extends javax.swing.JFrame {
                 XexitMousePressed(evt);
             }
         });
+        jPanel1.add(Xexit, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 0, 40, 40));
 
-        javax.swing.GroupLayout ChartLayout = new javax.swing.GroupLayout(Chart);
-        Chart.setLayout(ChartLayout);
-        ChartLayout.setHorizontalGroup(
-            ChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        ChartLayout.setVerticalGroup(
-            ChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 484, Short.MAX_VALUE)
-        );
+        jTxtime.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
+        jTxtime.setForeground(new java.awt.Color(255, 255, 255));
+        jTxtime.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(jTxtime, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, 123, 45));
 
-        btnIngresos.setBackground(new java.awt.Color(51, 51, 51));
-        btnIngresos.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
-        btnIngresos.setForeground(new java.awt.Color(255, 255, 255));
-        btnIngresos.setText("INGRESOS");
-        btnIngresos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
-        btnIngresos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnIngresosMouseClicked(evt);
-            }
-        });
+        jTxtDate.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
+        jTxtDate.setForeground(new java.awt.Color(255, 255, 255));
+        jTxtDate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(jTxtDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 20, 167, 45));
 
-        btnMasVendidos.setBackground(new java.awt.Color(51, 51, 51));
-        btnMasVendidos.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
-        btnMasVendidos.setForeground(new java.awt.Color(255, 255, 255));
-        btnMasVendidos.setText("VENTA DE LIBROS");
-        btnMasVendidos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
-        btnMasVendidos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnMasVendidosMouseClicked(evt);
-            }
-        });
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/analitica.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 30, 50));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Xexit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnMasVendidos, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnIngresos, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblIngresos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTxtime, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(jTxtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Chart, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(39, 39, 39))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTxtime, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTxtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(Xexit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(Chart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnIngresos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMasVendidos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblIngresos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(16, 16, 16))
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 83));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -316,6 +316,17 @@ public class EstadisticasForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         initChart(true);
     }//GEN-LAST:event_btnMasVendidosMouseClicked
+
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        xMouse =evt.getX();
+        yMouse =evt.getY();
+    }//GEN-LAST:event_jPanel1MousePressed
+
+    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+        int x= evt.getXOnScreen();
+        int y= evt.getYOnScreen();
+        this.setLocation(x - xMouse,y - yMouse);
+    }//GEN-LAST:event_jPanel1MouseDragged
 
     /**
      * @param args the command line arguments
@@ -380,6 +391,8 @@ public class EstadisticasForm extends javax.swing.JFrame {
     private javax.swing.JButton btnMasVendidos;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel jTxtDate;
     private javax.swing.JLabel jTxtime;
     private javax.swing.JLabel lblIngresos;
