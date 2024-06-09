@@ -1,0 +1,38 @@
+[
+  {
+    "cantidadvendida": 5,
+    "Obra": "Cien años de soledad",
+    "preciobase": 60000.0,
+    "preciovendidos": 300000.0
+  },
+  {
+    "cantidadvendida": 3,
+    "Obra": "Orgullo y prejuicio",
+    "preciobase": 50000.0,
+    "preciovendidos": 150000.0
+  },
+  {
+    "cantidadvendida": 3,
+    "Obra": "Dracula",
+    "preciobase": 55000.0,
+    "preciovendidos": 165000.0
+  },
+  {
+    "cantidadvendida": 5,
+    "Obra": "1984",
+    "preciobase": 45000.0,
+    "preciovendidos": 225000.0
+  },
+  {
+    "cantidadvendida": 7,
+    "Obra": "IT",
+    "preciobase": 60000.0,
+    "preciovendidos": 420000.0
+  },
+  {
+    "cantidadvendida": 6,
+    "Obra": "Frankenstein",
+    "preciobase": 50000.0,
+    "preciovendidos": 300000.0
+  }
+]
