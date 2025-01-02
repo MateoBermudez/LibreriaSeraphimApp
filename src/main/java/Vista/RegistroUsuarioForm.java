@@ -7,8 +7,12 @@ package Vista;
 import Controlador.CtrlRegistro;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.Objects;
 import javax.swing.JFrame;
 
+import Controlador.SeguridadArchivos;
 import Modelo.UsuarioCRUD;
 import Modelo.mdUsuario;
 import javax.swing.JOptionPane;
@@ -22,25 +26,45 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
     /**
      * Creates new form RegistroUsuarioForm
      */
+    boolean admin, adminSection;
+    String externalID;
+
+    int xMouse, yMouse;
+
     RegistroUsuarioForm registroUsuario;
     private CtrlRegistro Controlador = new CtrlRegistro();
-    
-    
+
+
     public RegistroUsuarioForm() {
         initComponents();
+
     }
     
     
-    public void InitRegister() {
-        registroUsuario = new RegistroUsuarioForm();
-        registroUsuario.setSize(1000, 800);
-        registroUsuario.setMaximumSize(registroUsuario.getSize());
-        registroUsuario.setMinimumSize(registroUsuario.getSize());
-        registroUsuario.setPreferredSize(registroUsuario.getSize());
-        registroUsuario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        registroUsuario.setLocationRelativeTo(null);
-        registroUsuario.getContentPane().setBackground(Color.GRAY);
-        registroUsuario.setVisible(true);
+    public void InitRegister(boolean isAdmin, String id, boolean adminSection) {
+        this.admin = isAdmin;
+        this.externalID = id;
+        this.adminSection = adminSection;
+        idField.setText(id);
+        this.setSize(840, 590);
+        this.setMaximumSize(this.getSize());
+        this.setMinimumSize(this.getSize());
+        this.setPreferredSize(this.getSize());
+        this.setLocationRelativeTo(null);
+        this.setCloseOperation();
+        this.getContentPane().setBackground(Color.GRAY);
+        this.setVisible(true);
+    }
+
+    private void setCloseOperation() {
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                SeguridadArchivos.EncriptarArchivos();
+                System.exit(0);
+            }
+        });
     }
     
     
@@ -72,107 +96,198 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
         apellidosField = new javax.swing.JTextField();
         telefono = new javax.swing.JLabel();
         telefonoField = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        header = new javax.swing.JPanel();
+        Xexit = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        LeftSide.setBackground(new java.awt.Color(51, 51, 51));
         LeftSide.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(LeftSide, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 530, 590));
 
+        RightSide.setBackground(new java.awt.Color(255, 255, 255));
         RightSide.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        upIngresar.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 16)); // NOI18N
+        upIngresar.setForeground(new java.awt.Color(51, 51, 51));
         upIngresar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         upIngresar.setText("Ingresar");
+        upIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         upIngresar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 upIngresarMouseClicked(evt);
             }
         });
-        RightSide.add(upIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
+        RightSide.add(upIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, -1, -1));
 
+        upRegistrarse.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 16)); // NOI18N
+        upRegistrarse.setForeground(new java.awt.Color(51, 51, 51));
         upRegistrarse.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         upRegistrarse.setText("Registrarse");
-        RightSide.add(upRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
+        upRegistrarse.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        RightSide.add(upRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, -1, -1));
 
-        nombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        nombre.setText("Ingrese su Nombre:");
-        RightSide.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 200, -1));
+        nombre.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
+        nombre.setForeground(new java.awt.Color(51, 51, 51));
+        nombre.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        nombre.setText("NOMBRE:");
+        RightSide.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 100, -1));
 
         nameField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 nameFieldKeyPressed(evt);
             }
         });
-        RightSide.add(nameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 200, -1));
+        RightSide.add(nameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 160, 30));
 
-        id.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        id.setText("Ingrese su ID:");
-        RightSide.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 200, -1));
+        id.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
+        id.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        id.setText("ID:");
+        RightSide.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 30, -1));
 
         idField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 idFieldKeyPressed(evt);
             }
         });
-        RightSide.add(idField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 200, -1));
+        RightSide.add(idField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 160, 30));
 
-        correo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        correo.setText("Ingrese su correo: ");
-        RightSide.add(correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 200, -1));
+        correo.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
+        correo.setForeground(new java.awt.Color(51, 51, 51));
+        correo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        correo.setText("E-MAIL:");
+        correo.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        RightSide.add(correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 70, -1));
 
         correoField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 correoFieldKeyPressed(evt);
             }
         });
-        RightSide.add(correoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 200, -1));
+        RightSide.add(correoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 160, 30));
 
-        contraseña.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        contraseña.setText("Ingrese su contraseña:");
-        RightSide.add(contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 200, -1));
+        contraseña.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
+        contraseña.setForeground(new java.awt.Color(51, 51, 51));
+        contraseña.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        contraseña.setText("CONTRASEÑA:");
+        RightSide.add(contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 120, -1));
 
         passwordField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 passwordFieldKeyPressed(evt);
             }
         });
-        RightSide.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 200, -1));
+        RightSide.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 160, 30));
 
-        btnRegistrarse.setText("Registrarse");
+        btnRegistrarse.setBackground(new java.awt.Color(51, 51, 51));
+        btnRegistrarse.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
+        btnRegistrarse.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrarse.setText("REGISTRARSE");
         btnRegistrarse.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnRegistrarseMouseClicked(evt);
             }
         });
-        RightSide.add(btnRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 520, 170, -1));
+        btnRegistrarse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarseActionPerformed(evt);
+            }
+        });
+        RightSide.add(btnRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 480, 170, 30));
 
-        apellidos.setText("Ingrese sus Apellidos");
-        RightSide.add(apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, -1, -1));
+        apellidos.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
+        apellidos.setForeground(new java.awt.Color(51, 51, 51));
+        apellidos.setText("APELLIDO:");
+        RightSide.add(apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, -1, -1));
 
         apellidosField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 apellidosFieldKeyPressed(evt);
             }
         });
-        RightSide.add(apellidosField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 200, -1));
+        RightSide.add(apellidosField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 160, 30));
 
-        telefono.setText("Ingrese su telefono");
-        RightSide.add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, -1, -1));
+        telefono.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
+        telefono.setForeground(new java.awt.Color(51, 51, 51));
+        telefono.setText("TELEFONO:");
+        RightSide.add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, -1, -1));
 
         telefonoField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 telefonoFieldKeyPressed(evt);
             }
         });
-        RightSide.add(telefonoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 200, -1));
+        RightSide.add(telefonoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 160, 30));
 
-        getContentPane().add(RightSide, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, 290, 590));
+        jLabel1.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel1.setText("Crear Nuevo Usuario");
+        RightSide.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel2.setText("¿Ya estas registrado?");
+        RightSide.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 23, -1, -1));
+
+        LeftSide.add(RightSide, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 430, 590));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/liberia1.png"))); // NOI18N
+        LeftSide.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 140, 470));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/liberia2.png"))); // NOI18N
+        LeftSide.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 130, 200));
+
+        header.setBackground(new java.awt.Color(51, 51, 51));
+        header.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                headerMouseDragged(evt);
+            }
+        });
+        header.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                headerMousePressed(evt);
+            }
+        });
+        header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Xexit.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 16)); // NOI18N
+        Xexit.setForeground(new java.awt.Color(255, 255, 255));
+        Xexit.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Xexit.setText("Cerrar");
+        Xexit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Xexit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                XexitMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                XexitMousePressed(evt);
+            }
+        });
+        header.add(Xexit, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 40, 40));
+
+        LeftSide.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 50));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/liberia3.png"))); // NOI18N
+        LeftSide.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, 130, 250));
+
+        getContentPane().add(LeftSide, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 590));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void upIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_upIngresarMouseClicked
         // TODO add your handling code here:
+        if (!Objects.equals(externalID, "")) {
+            return;
+        }
         dispose();
         InicioUsuarioForm inicioUsuario = new InicioUsuarioForm();
         inicioUsuario.InitLogin();
@@ -231,19 +346,45 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_telefonoFieldKeyPressed
 
-    
+    private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegistrarseActionPerformed
+
+    private void XexitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_XexitMouseClicked
+        SeguridadArchivos.EncriptarArchivos();
+        System.exit(0);
+    }//GEN-LAST:event_XexitMouseClicked
+
+    private void XexitMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_XexitMousePressed
+
+    }//GEN-LAST:event_XexitMousePressed
+
+    private void headerMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMouseDragged
+        int x= evt.getXOnScreen();
+        int y= evt.getYOnScreen();
+        this.setLocation(x - xMouse,y - yMouse);
+    }//GEN-LAST:event_headerMouseDragged
+
+    private void headerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMousePressed
+        xMouse =evt.getX();
+        yMouse =evt.getY();
+    }//GEN-LAST:event_headerMousePressed
+
+
     private void ValidarRegistro() {
+        int id;
         boolean validarDatos, registroExitoso;
         CtrlRegistro controladorRegistroUsuario = new CtrlRegistro();
         String Contrasena = capturarContrasena();
         validarDatos = controladorRegistroUsuario.CapturarDatos(nameField.getText(), apellidosField.getText(), idField.getText(),
-                correoField.getText(), telefonoField.getText(), Contrasena);
+                correoField.getText(), telefonoField.getText(), Contrasena, admin);
         if (validarDatos) {
             registroExitoso = registrarUsuario();
             if (registroExitoso) {
+                id = Integer.parseInt(idField.getText());
                 dispose();
                 libreriaForm libreria = new libreriaForm();
-                libreria.InitLibreria();
+                libreria.InitLibreria(id, adminSection);
             }
         }
         HabilitarCampos();
@@ -296,14 +437,21 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel LeftSide;
     private javax.swing.JPanel RightSide;
+    private javax.swing.JLabel Xexit;
     private javax.swing.JLabel apellidos;
     private javax.swing.JTextField apellidosField;
     private javax.swing.JButton btnRegistrarse;
     private javax.swing.JLabel contraseña;
     private javax.swing.JLabel correo;
     private javax.swing.JTextField correoField;
+    private javax.swing.JPanel header;
     private javax.swing.JLabel id;
     private javax.swing.JTextField idField;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nombre;
     private javax.swing.JPasswordField passwordField;
@@ -330,7 +478,7 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
             String apellidos = apellidosField.getText();
             String correo = correoField.getText();
             String telefono = telefonoField.getText();
-            mdUsuario usuario = new mdUsuario(nombres, apellidos, id, correo, telefono, capturarContrasena());
+            mdUsuario usuario = new mdUsuario(nombres, apellidos, id, correo, telefono, capturarContrasena(), admin);
             UsuarioCRUD usuarioCRUD = new UsuarioCRUD();
             usuarioCRUD.agregarUsuario(usuario);
             JOptionPane.showMessageDialog(null, "Usuario registrado correctamente");
@@ -339,5 +487,6 @@ public class RegistroUsuarioForm extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "El usuario ya existe");
         return false;
     }
+
 
 }

@@ -7,14 +7,16 @@ public class mdUsuario {
     private String correo;
     private String telefono;
     private String contrasena;
+    private boolean admin;
 
-    public mdUsuario(String nombre, String apellido, String id, String correo, String telefono, String contrasena) {
+    public mdUsuario(String nombre, String apellido, String id, String correo, String telefono, String contrasena, boolean admin) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.id = id;
         this.correo = correo;
         this.telefono = telefono;
         this.contrasena = contrasena;
+        this.admin = admin;
     }
     
     public mdUsuario(String id, String contrasena) {
@@ -70,5 +72,13 @@ public class mdUsuario {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    public boolean getAdmin() {
+        return admin;
     }
 }
