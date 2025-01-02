@@ -98,8 +98,8 @@ public class InventarioCRUD {
 
     public void actualizarTabla(ArrayList libros) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writerWithDefaultPrettyPrinter().writeValue(new File("data/json/inventario.json"), libros);
-        mapper.writerWithDefaultPrettyPrinter().writeValue(new File("data/json/inventarioTemporal.json"), libros);
+        //mapper.writerWithDefaultPrettyPrinter().writeValue(new File("data/json/inventario.json"), libros);
+        //mapper.writerWithDefaultPrettyPrinter().writeValue(new File("data/json/inventarioTemporal.json"), libros);
     }
 
     /*public static void main(String[] args) {
