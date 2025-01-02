@@ -4,22 +4,36 @@
  */
 package Vista;
 
+import Controlador.CtrlFacturaVentas;
+import Controlador.SeguridadArchivos;
+import Controlador.CtrlLibreria;
+import Modelo.InventarioCRUD;
+import Modelo.InventarioTemporalCRUD;
+import Modelo.VentasCRUD;
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.print.PrinterException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import Vista.InventarioForm;
 
 /**
  *
  * @author E2112
  */
 public class libreriaForm extends javax.swing.JFrame {
-
     private double total= 0.0;
-    private int x= 0;
+    private int x= 0, id;
+    private int xMouse, yMouse;
+    private boolean habilitarPagar = false, adminSection;
+
+
 
     libreriaForm libreria;
     /**
@@ -31,20 +45,35 @@ public class libreriaForm extends javax.swing.JFrame {
     }
     
     public void init(){
+        this.setSize(1000, 800);
         setImage();
         setTime();
     }
 
-    public void InitLibreria() {
-        libreria = new libreriaForm();
-        libreria.setSize(libreria.getPreferredSize());
-        libreria.setMaximumSize(libreria.getSize());
-        libreria.setMinimumSize(libreria.getSize());
-        libreria.setPreferredSize(libreria.getSize());
-        libreria.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        libreria.setLocationRelativeTo(null);
-        libreria.getContentPane().setBackground(Color.WHITE);
-        libreria.setVisible(true);
+    public void InitLibreria(int id, boolean adminSection) {
+        btnMenuAdmin.setVisible(adminSection);
+        this.id = id;
+        this.adminSection = adminSection;
+        this.setSize(this.getPreferredSize());
+        this.setMaximumSize(this.getSize());
+        this.setMinimumSize(this.getSize());
+        this.setPreferredSize(this.getSize());
+        this.setLocationRelativeTo(null);
+        this.setCloseOperation();
+        this.getContentPane().setBackground(Color.WHITE);
+        this.jTextArea.setEditable(false);
+        this.setVisible(true);
+    }
+
+    private void setCloseOperation() {
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                SeguridadArchivos.EncriptarArchivos();
+                System.exit(0);
+            }
+        });
     }
     
     public void setImage(){
@@ -116,6 +145,7 @@ public class libreriaForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTxtime = new javax.swing.JLabel();
         jTxtDate = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabelimagen = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -172,6 +202,7 @@ public class libreriaForm extends javax.swing.JFrame {
         jCheckBox7 = new javax.swing.JCheckBox();
         imagen6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        btnMenuAdmin = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         btnTotal = new javax.swing.JButton();
         btnPagar = new javax.swing.JButton();
@@ -188,17 +219,38 @@ public class libreriaForm extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(235, 235, 235));
+        jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel2MouseDragged(evt);
+            }
+        });
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel2MousePressed(evt);
+            }
+        });
 
-        jLabel1.setFont(new java.awt.Font("Poppins", 1, 36)); // NOI18N
-        jLabel1.setText("Librería");
+        jLabel1.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 44)); // NOI18N
+        jLabel1.setText("LIBRERIA");
 
-        jTxtime.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
+        jTxtime.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
         jTxtime.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        jTxtDate.setFont(new java.awt.Font("Poppins", 1, 17)); // NOI18N
+        jTxtDate.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
         jTxtDate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jLabel11.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
+        jLabel11.setText("Cerrar");
+        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -207,11 +259,13 @@ public class libreriaForm extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 443, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 459, Short.MAX_VALUE)
                 .addComponent(jTxtime, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTxtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addComponent(jTxtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel11)
+                .addGap(17, 17, 17))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,9 +273,10 @@ public class libreriaForm extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jTxtDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jTxtime, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel3.setBackground(new java.awt.Color(250, 250, 250));
@@ -289,14 +344,14 @@ public class libreriaForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addGap(1, 1, 1)
-                .addGroup(jLabelimagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLabelimagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jLabelimagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLabelimagenLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -523,7 +578,7 @@ public class libreriaForm extends javax.swing.JFrame {
                     .addGroup(jLabelimagen4Layout.createSequentialGroup()
                         .addGap(68, 68, 68)
                         .addComponent(jCheckBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLabelimagen4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(imagen3, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -682,9 +737,20 @@ public class libreriaForm extends javax.swing.JFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        jLabel2.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 32)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Items Disponibles");
+
+        btnMenuAdmin.setBackground(new java.awt.Color(51, 51, 51));
+        btnMenuAdmin.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        btnMenuAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/admin32.png"))); // NOI18N
+        btnMenuAdmin.setBorder(null);
+        btnMenuAdmin.setBorderPainted(false);
+        btnMenuAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuAdminActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -703,15 +769,20 @@ public class libreriaForm extends javax.swing.JFrame {
                             .addComponent(jLabelimagen2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabelimagen5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabelimagen6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(68, 68, 68))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addGap(74, 74, 74))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnMenuAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(96, 96, 96))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnMenuAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelimagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -731,7 +802,7 @@ public class libreriaForm extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 230, 230)));
 
         btnTotal.setBackground(new java.awt.Color(204, 255, 204));
-        btnTotal.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        btnTotal.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
         btnTotal.setText("TOTAL");
         btnTotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         btnTotal.addActionListener(new java.awt.event.ActionListener() {
@@ -741,7 +812,7 @@ public class libreriaForm extends javax.swing.JFrame {
         });
 
         btnPagar.setBackground(new java.awt.Color(102, 204, 255));
-        btnPagar.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        btnPagar.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
         btnPagar.setText("PAGAR");
         btnPagar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         btnPagar.addActionListener(new java.awt.event.ActionListener() {
@@ -751,7 +822,7 @@ public class libreriaForm extends javax.swing.JFrame {
         });
 
         BtnExit.setBackground(new java.awt.Color(255, 153, 153));
-        BtnExit.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        BtnExit.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
         BtnExit.setText("SALIDA");
         BtnExit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         BtnExit.addActionListener(new java.awt.event.ActionListener() {
@@ -761,7 +832,7 @@ public class libreriaForm extends javax.swing.JFrame {
         });
 
         btnReset.setBackground(new java.awt.Color(153, 153, 255));
-        btnReset.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        btnReset.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
         btnReset.setText("VACIAR");
         btnReset.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         btnReset.addActionListener(new java.awt.event.ActionListener() {
@@ -815,13 +886,15 @@ public class libreriaForm extends javax.swing.JFrame {
         jTextFieldTotal.setFont(new java.awt.Font("Poppins SemiBold", 0, 14)); // NOI18N
         jTextFieldTotal.setText("0.00");
 
-        jLabel8.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("SUBTOTAL");
 
-        jLabel9.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
         jLabel9.setText("IVA");
 
-        jLabel10.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel10.setText("TOTAL");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -907,14 +980,19 @@ public class libreriaForm extends javax.swing.JFrame {
     private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
         int qty = Integer.parseInt(jSpinner7.getValue().toString());
         if(qtyisZero(qty) && jCheckBox7.isSelected()){
-            x++;
-            if (x==1){
-                Biblioteca();
+            if (CtrlLibreria.CantidadLibros("6", qty)) {
+                CtrlLibreria.ActualizarInventarioTemporal("6", qty);
+                x++;
+                if (x == 1) {
+                    Biblioteca();
+                }
+                double precio = qty * 50000;
+                total += precio;
+                jTextArea.setText(jTextArea.getText() + x + ". " + jLabel33.getText() + "\t\t\t" + precio + "\n");
+                dudate();
+            } else {
+                jCheckBox7.setSelected(false);
             }
-            double precio = qty*50000;
-            total += precio;
-            jTextArea.setText(jTextArea.getText()+x+". "+jLabel33.getText()+"\t\t\t"+precio+"\n");
-            dudate();
         } else {
             jCheckBox7.setSelected(false);
         }
@@ -923,14 +1001,20 @@ public class libreriaForm extends javax.swing.JFrame {
     private void jCheckBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox6ActionPerformed
         int qty = Integer.parseInt(jSpinner6.getValue().toString());
         if(qtyisZero(qty) && jCheckBox6.isSelected()){
-            x++;
-            if (x==1){
-                Biblioteca();
+            if (CtrlLibreria.CantidadLibros("4", qty)) {
+                CtrlLibreria.ActualizarInventarioTemporal("4", qty);
+
+                x++;
+                if (x == 1) {
+                    Biblioteca();
+                }
+                double precio = qty * 45000;
+                total += precio;
+                jTextArea.setText(jTextArea.getText() + x + ". " + jLabel28.getText() + "\t\t\t" + precio + "\n");
+                dudate();
+            } else {
+                jCheckBox6.setSelected(false);
             }
-            double precio = qty*45000;
-            total += precio;
-            jTextArea.setText(jTextArea.getText()+x+". "+jLabel28.getText()+"\t\t\t"+precio+"\n");
-            dudate();
         } else {
             jCheckBox6.setSelected(false);
         }
@@ -939,7 +1023,10 @@ public class libreriaForm extends javax.swing.JFrame {
     private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
         int qty = Integer.parseInt(jSpinner5.getValue().toString());
         if(qtyisZero(qty) && jCheckBox5.isSelected()){
-            x++;
+            if (CtrlLibreria.CantidadLibros("3", qty)) {
+                CtrlLibreria.ActualizarInventarioTemporal("3", qty);
+
+                x++;
             if (x==1){
                 Biblioteca();
             }
@@ -947,6 +1034,9 @@ public class libreriaForm extends javax.swing.JFrame {
             total += precio;
             jTextArea.setText(jTextArea.getText()+x+". "+jLabel27.getText()+"\t\t\t"+precio+"\n");
             dudate();
+            } else {
+                jCheckBox5.setSelected(false);
+            }
         } else {
             jCheckBox5.setSelected(false);
         }
@@ -955,14 +1045,20 @@ public class libreriaForm extends javax.swing.JFrame {
     private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
         int qty = Integer.parseInt(jSpinner4.getValue().toString());
         if(qtyisZero(qty) && jCheckBox4.isSelected()){
-            x++;
-            if (x==1){
-                Biblioteca();
+            if (CtrlLibreria.CantidadLibros("5", qty)) {
+                CtrlLibreria.ActualizarInventarioTemporal("5", qty);
+
+                x++;
+                if (x == 1) {
+                    Biblioteca();
+                }
+                double precio = qty * 60000;
+                total += precio;
+                jTextArea.setText(jTextArea.getText() + x + ". " + jLabel18.getText() + "\t\t\t" + precio + "\n");
+                dudate();
+            } else {
+                jCheckBox4.setSelected(false);
             }
-            double precio = qty*60000;
-            total += precio;
-            jTextArea.setText(jTextArea.getText()+x+". "+jLabel18.getText()+"\t\t\t"+precio+"\n");
-            dudate();
         } else {
             jCheckBox4.setSelected(false);
         }
@@ -971,14 +1067,19 @@ public class libreriaForm extends javax.swing.JFrame {
     private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
         int qty = Integer.parseInt(jSpinner3.getValue().toString());
         if(qtyisZero(qty) && jCheckBox3.isSelected()){
-            x++;
-            if (x==1){
-                Biblioteca();
+            if (CtrlLibreria.CantidadLibros("2", qty)) {
+                CtrlLibreria.ActualizarInventarioTemporal("2", qty);
+                x++;
+                if (x == 1) {
+                    Biblioteca();
+                }
+                double precio = qty * 50000;
+                total += precio;
+                jTextArea.setText(jTextArea.getText() + x + ". " + jLabel13.getText() + "\t\t" + precio + "\n");
+                dudate();
+            } else {
+                jCheckBox3.setSelected(false);
             }
-            double precio = qty*55000;
-            total += precio;
-            jTextArea.setText(jTextArea.getText()+x+". "+jLabel13.getText()+"\t\t"+precio+"\n");
-            dudate();
         } else {
             jCheckBox3.setSelected(false);
         }
@@ -994,14 +1095,19 @@ public class libreriaForm extends javax.swing.JFrame {
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         int qty = Integer.parseInt(jSpinner1.getValue().toString());
         if(qtyisZero(qty) && jCheckBox1.isSelected()){
-            x++;
-            if (x==1){
-                Biblioteca();
+            if (CtrlLibreria.CantidadLibros("1", qty)) {
+                CtrlLibreria.ActualizarInventarioTemporal("1", qty);
+                x++;
+                if (x == 1) {
+                    Biblioteca();
+                }
+                double precio = qty * 60000;
+                total += precio;
+                jTextArea.setText(jTextArea.getText() + x + ". " + jLabel3.getText() + "\t\t" + precio + "\n");
+                dudate();
+            } else {
+                jCheckBox1.setSelected(false);
             }
-            double precio = qty*60000;
-            total += precio;
-            jTextArea.setText(jTextArea.getText()+x+". "+jLabel3.getText()+"\t\t"+precio+"\n");
-            dudate();
         } else {
             jCheckBox1.setSelected(false);
         }
@@ -1039,16 +1145,36 @@ public class libreriaForm extends javax.swing.JFrame {
                      +"TOTAL:\t\t\t"+(total+(total*0.19))+"\n"
            +"**************************Gracias****************************\n");
            btnTotal.setEnabled(false);
+           habilitarPagar = true;
        }
     }//GEN-LAST:event_btnTotalActionPerformed
 
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
         if (total != 0){
-            try{
-                jTextArea.print();
-            } catch (PrinterException ex){
-                Logger.getLogger(libreriaForm.class.getName()).log(Level.SEVERE, null, ex);
+            if (habilitarPagar) {
+                habilitarPagar = false;
+                try{
+                    CtrlFacturaVentas CtrlFacturaVentas = new CtrlFacturaVentas();
+                    CtrlFacturaVentas.CrearFactura(this.id, this.jTxtDate.getText(), this.jTextArea.getText());
+                    JOptionPane.showMessageDialog(this, "Factura creada con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    InventarioCRUD InventarioCRUD = new InventarioCRUD();
+                    InventarioCRUD.ActualizarInventario();
+                    VentasCRUD VentasCRUD = new VentasCRUD();
+                    VentasCRUD.actualizarcantidad("Cien años de soledad", (Integer) jSpinner1.getValue());
+                    VentasCRUD.actualizarcantidad("Orgullo y prejuicio", (Integer) jSpinner3.getValue());
+                    VentasCRUD.actualizarcantidad("Dracula", (Integer) jSpinner5.getValue());
+                    VentasCRUD.actualizarcantidad("1984", (Integer) jSpinner6.getValue());
+                    VentasCRUD.actualizarcantidad("IT", (Integer) jSpinner4.getValue());
+                    VentasCRUD.actualizarcantidad("Frankenstein", (Integer) jSpinner7.getValue());
+                    jTextArea.print();
+                } catch (PrinterException ex){
+                    Logger.getLogger(libreriaForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                reset();
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Primero debes calcular el total en la factura", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(this, "No has seleccionado nada", "Error", JOptionPane.ERROR_MESSAGE);
@@ -1057,14 +1183,46 @@ public class libreriaForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void BtnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExitActionPerformed
-       dispose();
-       InicioUsuarioForm InicioUsuario = new InicioUsuarioForm();
+        dispose();
+        InventarioTemporalCRUD InventarioTemporalCRUD = new InventarioTemporalCRUD();
+        InventarioTemporalCRUD.ActualizarInventarioTemporal();
+        InicioUsuarioForm InicioUsuario = new InicioUsuarioForm();
         InicioUsuario.InitLogin();
     }//GEN-LAST:event_BtnExitActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        InventarioTemporalCRUD InventarioTemporalCRUD = new InventarioTemporalCRUD();
+        InventarioTemporalCRUD.ActualizarInventarioTemporal();
         reset();
     }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnMenuAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuAdminActionPerformed
+        // TODO add your handling code here:
+       if (adminSection) {
+           dispose();
+           MenuAdministradorForm MenuAdministrador = new MenuAdministradorForm();
+           MenuAdministrador.InitMenuAdministrador(id);
+       }
+       else {
+              JOptionPane.showMessageDialog(this, "No tienes permisos para acceder a esta sección", "Error", JOptionPane.ERROR_MESSAGE);
+       }
+    }//GEN-LAST:event_btnMenuAdminActionPerformed
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        SeguridadArchivos.EncriptarArchivos();
+        System.exit(0);
+    }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
+        int x= evt.getXOnScreen();
+        int y= evt.getYOnScreen();
+        this.setLocation(x - xMouse,y - yMouse);
+    }//GEN-LAST:event_jPanel2MouseDragged
+
+    private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
+        xMouse =evt.getX();
+        yMouse =evt.getY();
+    }//GEN-LAST:event_jPanel2MousePressed
 
     /**
      * @param args the command line arguments
@@ -1103,6 +1261,7 @@ public class libreriaForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnExit;
+    private javax.swing.JButton btnMenuAdmin;
     private javax.swing.JButton btnPagar;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnTotal;
@@ -1120,6 +1279,7 @@ public class libreriaForm extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
